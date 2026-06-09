@@ -1,0 +1,599 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Fonts */
+  --switzer:   'Switzer', sans-serif;
+  --geist:     'Geist Mono', monospace;
+  --velvelyne: Georgia, 'Times New Roman', serif;
+
+  /* Colour palette — from Figma design system */
+  --blue:         #183e85;   /* primary brand */
+  --blue-dark:    #08315e;   /* deep navy */
+  --blue-mid:     #3b5878;   /* secondary */
+  --blue-muted:   #557292;   /* muted blue-gray */
+  --blue-light:   #6399d1;   /* light blue */
+  --blue-teal:    #83a1ab;   /* teal accent */
+  --blue-bright:  #0187cb;   /* vivid accent */
+  --red:          #ef4328;
+  --beige:        #b8b89a;
+  --light-gray:   #f2f0f3;
+  --bg:           #ffffff;
+  --bg-alt:       #fefefe;
+  --ink:          #111111;
+  --ink-dark:     #121212;
+
+  /* Grid */
+  --grid-margin:   24px;
+  --grid-gap:      16px;
+  --sidebar-width: 200px;
+  --nav-col-width: 121px;    /* landing page: 3 right-rail columns */
+
+  /* Type scale */
+  --size-hero:     200px;
+  --size-name:      49px;
+  --size-nav-head:  22px;
+  --size-nav:       24px;
+  --size-body:      18px;
+  --size-caption:   17px;
+
+  /* Letter-spacing */
+  --track-hero:  -2.2px;
+  --track-name:  -0.539px;
+  --track-body:  -0.198px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  min-width: 1512px;
+  font-family: var(--geist);
+  color: var(--ink);
+}
+
+/* ─── 6-COLUMN STRETCH GRID ─── */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--grid-gap);
+  padding: 0 var(--grid-margin);
+}
+
+/* ─── LANDING PAGE LAYOUT ─── */
+.landing-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.landing-main {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+/* Right nav: WORK(361px) + PLAY(120px) + ABOUT(124px) = 605px */
+.landing-nav {
+  display: flex;
+  flex-shrink: 0;
+  width: 605px;
+  align-items: stretch;
+}
+
+/* WORK — wide column with project thumbnails */
+.landing-nav-work {
+  width: 361px;
+  flex-shrink: 0;
+  border-left: 1px dashed var(--ink);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48px;
+}
+
+.landing-nav-label {
+  font-family: var(--geist);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* PLAY / ABOUT — narrow columns */
+.landing-nav-slim {
+  flex: 1;
+  border-left: 1px dashed var(--ink);
+  height: 100vh;
+  padding-top: 48px;
+  padding-left: 31px;
+  font-family: var(--geist);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Stacked project thumbnails inside WORK column */
+.landing-work-thumbs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  width: 245px;
+}
+
+.landing-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.landing-thumb-img {
+  width: 100%;
+  aspect-ratio: 1213 / 753;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-thumb-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.landing-thumb-name {
+  font-family: var(--switzer);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: -0.187px;
+  color: #000;
+}
+
+/* ─── LANDING HERO ─── */
+.hero-name {
+  position: absolute;
+  left: 58px;
+  top: 541px;
+  font-family: var(--geist);
+  font-size: var(--size-hero);
+  font-weight: 600;
+  color: var(--blue);
+  line-height: 1;
+  letter-spacing: var(--track-hero);
+  white-space: nowrap;
+}
+
+/* ─── PAGE STRUCTURE (inner pages) ─── */
+.page {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--bg-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 20px 0;  /* left=20px matches Figma nav-container left */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 30px; }
+
+.sidebar-section { display: flex; flex-direction: column; gap: 12px; }
+
+.nav-heading {
+  font-family: var(--geist);
+  font-size: 22px;
+  font-weight: 600;
+  color: #111;
+  line-height: 1;
+}
+
+.project-list { display: flex; flex-direction: column; gap: 8px; }
+
+.project-btn.active {
+  font-weight: 600;
+}
+
+.project-btn {
+  font-family: var(--geist);
+  font-size: 18px;
+  font-weight: 400;
+  color: #121212;
+  line-height: 1;
+  letter-spacing: -0.198px;
+  height: 20px;
+  overflow: hidden;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-links { display: flex; flex-direction: column; gap: 16px; }
+
+.sidebar-name {
+  font-family: var(--geist);
+  font-size: var(--size-name);
+  font-weight: 500;
+  color: #000;
+  line-height: 1.04;
+  letter-spacing: var(--track-name);
+  padding-bottom: 23px;  /* 982 − 857 − ~102 = 23px bottom gap in Figma */
+}
+
+/* ─── MAIN CONTENT (inner pages) ─── */
+.main {
+  width: calc(1512px - var(--sidebar-width));
+  flex-shrink: 0;
+}
+
+/* ─── TYPE SCALE ─── */
+.text-hero {
+  font-family: var(--geist);
+  font-size: var(--size-hero);
+  font-weight: 600;
+  color: var(--blue);
+  line-height: 1;
+  letter-spacing: var(--track-hero);
+}
+
+.title {
+  font-family: var(--switzer);
+  font-size: 100px;
+  font-weight: 400;
+  color: #111;
+  line-height: 1;
+}
+
+.subhead-1 {
+  font-family: var(--switzer);
+  font-size: 32px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.4;
+  letter-spacing: -0.352px;
+}
+
+.subhead-2 {
+  font-family: var(--switzer);
+  font-size: 24px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.4;
+  letter-spacing: -0.264px;
+}
+
+.body {
+  font-family: var(--switzer);
+  font-size: 20px;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.4;
+  letter-spacing: -0.22px;
+}
+
+.caption {
+  font-family: var(--switzer);
+  font-size: var(--size-caption);
+  font-weight: 300;
+  color: #000;
+  line-height: 1.5;
+  letter-spacing: -0.187px;
+}
+
+.mono-semibold {
+  font-family: var(--geist);
+  font-size: var(--size-body);
+  font-weight: 600;
+  color: #1e1e1e;
+  line-height: 1.4;
+  letter-spacing: var(--track-body);
+}
+
+.mono-regular {
+  font-family: var(--geist);
+  font-size: var(--size-body);
+  font-weight: 400;
+  color: #1e1e1e;
+  line-height: 1.4;
+  letter-spacing: var(--track-body);
+}
+
+.velvelyne {
+  font-family: var(--velvelyne);
+  font-style: normal;
+  font-size: 20px;
+  color: #000;
+  line-height: 1.1;
+}
+
+/* ─── DIVIDERS ─── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #000;
+}
+
+.divider-dashed {
+  width: 100%;
+  height: 0;
+  border-top: 1px dashed #000;
+}
+
+/* ─── HEADER SECTION ─── */
+.case-header {
+  padding: 40px 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header-title-row { margin-bottom: 24px; }
+
+.project-meta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-size: 18px;
+  letter-spacing: -0.198px;
+  color: #1e1e1e;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* ─── IMAGES ─── */
+.img-crop {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+/* ─── TWO-COLUMN GRID ─── */
+.col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ─── SECTION SPACING ─── */
+.s40 { margin-top: 40px; }
+.s60 { margin-top: 60px; }
+.s80 { margin-top: 80px; }
+.pad { padding: 0 24px; }
+
+/* ─── VENN DIAGRAM ─── */
+.venn-area {
+  padding: 0 24px;
+  margin-top: 60px;
+  position: relative;
+  height: 300px;
+}
+
+.venn-red-blob {
+  position: absolute;
+  background: var(--red);
+  border-radius: 1000px;
+  width: 430px;
+  height: 212px;
+  left: calc(33.33% + 8px);
+  top: 10px;
+}
+
+.venn-circles {
+  position: relative;
+  height: 240px;
+}
+
+.venn-circle {
+  position: absolute;
+  width: 203px;
+  height: 203px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.venn-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  margin-top: 8px;
+}
+
+/* ─── INTERACTION CARD ─── */
+.interaction-block {
+  padding: 0 24px;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.answer-option {
+  font-family: var(--velvelyne);
+  font-size: 24px;
+  color: #000;
+  line-height: 1.4;
+  letter-spacing: -0.264px;
+}
+
+.answer-option.selected {
+  background: var(--beige);
+  display: inline-block;
+  padding: 2px 8px;
+}
+
+/* ─── COLOUR EXPERIMENT GRID ─── */
+.colour-exp {
+  background: var(--light-gray);
+  padding: 32px 40px 48px;
+  margin: 24px 24px 0;
+  position: relative;
+}
+
+.exp-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.exp-separator {
+  height: 1px;
+  background: #000;
+  margin-bottom: 16px;
+}
+
+.exp-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.exp-row img { height: 160px; object-fit: contain; }
+
+.exp-annotation {
+  position: absolute;
+  bottom: -24px;
+  text-align: center;
+}
+
+.exp-annotation-line {
+  height: 1px;
+  background: #000;
+  width: 146px;
+  margin: 0 auto 4px;
+}
+
+/* ─── SCREENSHOTS + ANNOTATIONS ─── */
+.screenshots-block {
+  padding: 0 24px;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 837px 1fr;
+  gap: 40px;
+}
+
+.screenshot-stack { display: flex; flex-direction: column; gap: 24px; }
+
+.screenshot-frame {
+  width: 100%;
+  height: 405px;
+  position: relative;
+  overflow: hidden;
+}
+
+.screenshot-frame img {
+  position: absolute;
+  max-width: none;
+  width: 100%;
+}
+
+.screenshot-annotations { display: flex; flex-direction: column; gap: 64px; padding-top: 8px; }
+
+/* ─── IMPACT ─── */
+.impact-block {
+  padding: 0 24px;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 411px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--blue);
+  min-height: 339px;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.footer-chat {
+  font-family: var(--geist);
+  font-size: 98px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -1.078px;
+  line-height: 1.5;
+}
+
+.footer-links {
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.footer-link {
+  font-family: var(--geist);
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: underline;
+  letter-spacing: -0.198px;
+  line-height: 1.5;
+}
+
+.footer-copyright {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-family: var(--switzer);
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: -0.176px;
+  line-height: 1.5;
+}
+
+.to-top-btn {
+  position: absolute;
+  right: 60px;
+  top: 31px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #fff;
+  font-family: var(--geist);
+  font-size: 17px;
+  letter-spacing: -0.187px;
+  line-height: 1.5;
+  padding: 24px;
+}

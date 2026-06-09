@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shape of Days — Seoha Kim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,300i,400i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <p class="nav-heading">WORK</p>
+        <div class="project-list">
+          <a href="akea-haus.html" class="project-btn">Akea Haus</a>
+          <a href="#" class="project-btn">Lumiere</a>
+          <a href="shape-of-days.html" class="project-btn">Shape of Days</a>
+          <a href="#" class="project-btn">Bakatchae</a>
+        </div>
+      </div>
+      <div class="sidebar-links">
+        <a href="play.html" class="nav-heading" style="text-decoration:none;">PLAY</a>
+        <a href="about.html" class="nav-heading" style="text-decoration:none;">ABOUT ME</a>
+      </div>
+    </nav>
+    <a href="index.html" class="sidebar-name" style="text-decoration:none;">Seoha<br>Kim</a>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main">
+
+    <!-- HEADER -->
+    <header class="case-header">
+      <h1 class="title">Shape of Days</h1>
+
+      <div class="divider"></div>
+
+      <div class="project-meta">
+        <div>
+          <p class="mono-semibold">Academic project / Solo</p>
+          <div class="mono-regular" style="margin-top:28px;">
+            <p>UX research</p>
+            <p>Visual System Design</p>
+            <p>Interaction Design</p>
+            <p>Generative development (p5.js)</p>
+          </div>
+        </div>
+        <p class="mono-semibold" style="text-align:right;">2025</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="summary-row">
+        <span class="mono-semibold">Summary</span>
+        <p class="mono-regular" style="width:410px;">
+          Shape of Days is a web experience that translates daily reflection into a unique geometric pattern; a visual record of your day that is deeply personal, without being fully legible to others. It lowers the barrier to emotional reflection through structure, guiding users naturally from everyday events toward how they felt during them.
+        </p>
+      </div>
+
+      <div class="divider"></div>
+    </header>
+
+    <!-- HERO IMAGE -->
+    <div style="margin:0 24px; margin-top: 32px;">
+      <img src="assets/sod-hero-img.png" alt="Shape of Days case study" style="width:100%; height:auto; display:block;">
+    </div>
+
+    <!-- PROBLEM STATEMENT -->
+    <div class="pad s60">
+      <p class="subhead-1" style="max-width:837px;">
+        In this digital age, people record everything but remember very little. While 80% of people never revisit photos after the day they were taken, tools that capture context tend to lean either toward passive logging or intimidating open-ended writing, with very little in between.
+      </p>
+      <p class="subhead-1" style="max-width:837px; margin-top:28px;">
+        The gap between lived experiences and how they are remembered widens every time feelings go undocumented. This creates an opportunity for a tool that captures emotional context in a visually cohesive and accessible way.
+      </p>
+    </div>
+
+    <!-- SPARK ANECDOTE -->
+    <div class="pad s60 col-2">
+      <div></div>
+      <p class="body">
+        The project sparked from a conversation with a friend who described journaling as intimidating, and often became little more than schedules rather than reflection.
+      </p>
+    </div>
+
+    <!-- RESEARCH DIAGRAM (sod-research-img1) -->
+    <div style="margin-top:60px; margin-left:calc(16.67% + 19.69px);">
+      <img src="assets/sod-research-img1.png" alt="Research diagram">
+    </div>
+
+    <!-- INSIGHT -->
+    <div class="pad s60 col-2">
+      <div>
+        <p class="caption">Insight</p>
+        <p class="subhead-2" style="margin-top:8px; max-width:407px;">
+          How might emotional reflection become intuitive and visually engaging without sacrificing depth?
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <p class="body">
+          Research highlighted that this barrier affected far more people than I initially assumed. Many struggled to express emotions even in private spaces, making it difficult to preserve how they felt during significant moments. Over time, this can affect memory recall, even when visual cues such as photos and videos are available.
+        </p>
+        <p class="body">
+          The challenge was not only how to capture emotional context, but how to lower the barrier to getting people started by turning reflection into an enjoyable, rewarding experience.
+        </p>
+      </div>
+    </div>
+
+    <!-- DESIGN APPROACH -->
+    <div class="pad s80">
+      <p class="caption">Design approach</p>
+      <div style="display:flex; flex-direction:column; gap:40px; margin-top:16px; max-width:624px;">
+        <div>
+          <p class="subhead-1">Reflection should feel safe, not exposed</p>
+          <p class="body" style="margin-top:12px; max-width:410px;">Users should be able to document emotions without feeling vulnerable or pressured to reveal them.</p>
+        </div>
+        <div>
+          <p class="subhead-1">Reflection should create personal meaning</p>
+          <p class="body" style="margin-top:12px; max-width:410px;">The outcome should be meaningful to the creator without requiring explanation to anyone else, but visually cohesive enough to be perceived as is.</p>
+        </div>
+        <div>
+          <p class="subhead-1">Reflection should be guided, not forced</p>
+          <p class="body" style="margin-top:12px; max-width:410px;">The reflection should be supported with adequate structure to support reflection, while allowing users to interpret their experiences in their own way.</p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- SOLUTION -->
+    <div class="pad s80">
+      <p class="caption">Solution</p>
+      <p class="subhead-1" style="margin-top:16px; max-width:837px;">
+        Shape of Days approaches reflection as a process rather than a prompt. Instead of asking users to describe their emotions directly, the system builds context incrementally through a sequence of guided questions. Each answer contributes a layer to a growing visual outcome until a complete pattern emerges.
+      </p>
+      <p class="subhead-1" style="margin-top:28px; max-width:837px;">
+        Rather than replacing traditional journaling, it acts as a stepping stone toward deeper and more sustainable reflection.
+      </p>
+    </div>
+
+    <!-- SOLUTION IMAGE (sod-solution-img1) -->
+    <div style="margin-top:60px; margin-left:142px;">
+      <img src="assets/sod-solution-img1.png"
+           style="display:block; width:1100px; height:auto; max-width:none;" alt="Solution interaction">
+    </div>
+
+    <!-- REFLECTION SYSTEM -->
+    <div class="pad s80">
+      <p class="caption" style="margin-left:24px;">Reflection System</p>
+      <div class="col-2" style="margin-top:16px; gap:40px; margin-left: 24px;">
+        <div>
+          <p class="subhead-2">
+            The most critical design challenge was guiding users into emotional reflection without triggering the anxiety that often makes journaling feel overwhelming. For accessibility, I focused on areas that are relevant to daily life for everyone, easy to recall, and can be rated by intensity rather than quantity:
+          </p>
+          <ul class="body" style="margin-top:20px; margin-left:30px; display:flex; flex-direction:column; gap:0;">
+            <li>Physical activity</li>
+            <li>Digital consumption</li>
+            <li>Social interaction</li>
+            <li>Hobby time</li>
+            <li>Productivity</li>
+            <li>Predominant mood</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <p class="body">During testing, most participants referenced answers from earlier prompts when determining their predominant mood. This suggested that the prompts functioned as interconnected steps rather than separate questions, helping users arrive at emotional reflection through recall.</p>
+          <p class="body">Research also highlighted the importance of safety and confidentiality in self-reflection. While the flow helped users open up gradually, traditional rating scales created a disconnect in emotional language.</p>
+          <p class="body">To address this, I adapted the Likert scale using more inclusive and neutral language while removing the traditional neutral midpoint. This encouraged participants to pause and consider their response more carefully.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CASE STUDY FULL-WIDTH IMAGE -->
+    <div style="margin:60px 24px 0;">
+      <img src="assets/lp-thumb-sod.webp" alt="Seoha Kim Case Study" style="width:100%; height:auto; display:block;">
+    </div>
+
+    <!-- VISUAL SYSTEM -->
+    <div class="pad s60">
+      <p class="caption">Visual System</p>
+      <p class="subhead-2" style="margin-top:16px; max-width:837px;">
+        The visual system is heavily influenced by Dancheong, traditional Korean decorative painting found in architecture. As the project originated from a personal interest in memory and reflection, I wanted to incorporate an element of my own cultural background to anchor the experience.
+      </p>
+    </div>
+
+    <!-- DANCHEONG REFERENCE IMAGES -->
+    <div style="display:flex; gap:24px; margin:40px 24px 0; margin-left:calc(16.67% + 42px); align-items:flex-start;">
+      <img src="assets/sod-dancheong.png" alt="Dancheong" style="width:355px; height:auto; display:block;">
+      <img src="assets/cs-image-29.webp" alt="Mandala reference" style="width:255px; height:auto; display:block;">
+    </div>
+
+    <!-- VISUAL SYSTEM TEXT -->
+    <div class="pad s40 col-2">
+      <div></div>
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <p class="body">The geometric floral motifs found in Dancheong originates from Buddhist mandalas, which symbolise harmony and wholeness.</p>
+        <p class="body">Mandalas have also appeared in psychology as tools for self-reflection and self-expression. This connection provided both cultural grounding and a framework for transforming emotional data into a meaningful visual record.</p>
+      </div>
+    </div>
+
+    <!-- COLOUR PALETTE IMAGE -->
+    <!-- <div style="border:1px solid #000; margin:40px 24px 0; width:837px;">
+      <img src="assets/sod-colour-palette.png" alt="Colour system" style="width:100%; height:auto; display:block;">
+    </div> -->
+
+    <!-- PATTERN SYSTEM EXPERIMENTS LABEL -->
+
+    <!-- COLOUR PALETTE TEXT -->
+    <div class="pad s16 col-2" style="margin-top:16px;">
+      <div></div>
+      <p class="body" style="max-width:837px; margin-top: 180px;">
+        The colour palette based on the Five Cardinal Colours: red, blue, yellow, white and black.
+        After the desirability test, the palette was updated to a modernised tone with softer contrast to achieve a more cohesive visual system while maintaining the symbolic associations of the original hues.
+      </p>
+    </div>
+
+    <!-- COLOUR EXPERIMENT (colour-experiment-img) -->
+    <div style="margin-top:24px; margin-left:calc(16.67% + 18.33px);">
+      <img src="sources/colour-experiment.svg"
+           style="display:block; width:1051px; height:auto; max-width:none;" alt="Colour experiment">
+    </div>
+
+    <!-- VECTOR PATTERN GRAPHIC -->
+    <div style="margin:12px 24px 0; margin-left:calc(16.67% + 18.33px);">
+      <img src="assets/sod-colour-palette.png"
+           style="width:1051px; height:auto; display:block; max-width:none;" alt="Pattern system">
+    </div>
+    
+
+    <!-- SCREENSHOTS + ANNOTATIONS -->
+    <div class="screenshots-block">
+      <div class="screenshot-stack">
+        <img src="assets/sod-user-journey1.png" style="width:100%; height:auto; display:block;" alt="App screen 1">
+        <img src="assets/sod-user-journey2.png" style="width:100%; height:auto; display:block;" alt="App screen 2">
+        <img src="assets/sod-user-journey3.png" style="width:100%; height:auto; display:block;" alt="App screen 3">
+      </div>
+      <div class="screenshot-annotations">
+        <p class="body" style="max-width:197px;">As users answer each prompt, they received an immediate visual feedback as a polygon layer gradually building a unified geometric pattern.</p>
+        <p class="body" style="max-width:197px;">By the end of the sixth prompt, users are rewarded with a unique visualisation of their day.</p>
+        <p class="body" style="max-width:197px;">The pattern can be saved to an online archive or downloaded and remixed with other personal artefacts for further contextualisation.</p>
+      </div>
+    </div>
+
+    <!-- POST-SCREENSHOTS TEXT -->
+    <div class="pad s60">
+      <p class="subhead-1" style="max-width:837px;">
+        Because users witness the pattern being constructed layer by layer, very little contextualisation is required.
+        The abstract nature of the outcome protects vulnerable emotions while preserving their complexity, addressing the tension between wanting to document feelings and not wanting to expose them fully.
+      </p>
+    </div>
+
+    <!-- IMPACT -->
+    <div class="impact-block">
+      <!-- Photo -->
+      <div>
+        <img src="assets/sod-user-impact.png" alt="Impact photo" style="width:100%; height:auto; display:block;">
+      </div>
+      <!-- Text -->
+      <div>
+        <p class="caption">Impact</p>
+        <p class="subhead-1" style="margin-top:16px; max-width:837px;">
+          Users began comparing patterns across different days when tested for two consecutive days, decoding individual layers rather than viewing them solely as complete compositions; emerged without prompting.
+        </p>
+        <p class="body" style="margin-top:24px; max-width:411px;">
+          Participants responded strongly to how personal the output felt while remaining unreadable to others, suggesting that abstraction successfully balanced emotional expression and privacy.
+        </p>
+      </div>
+    </div>
+
+    <div style="height:80px;"></div>
+  </main>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <p class="footer-chat">Chat?</p>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/gim.coha/" class="footer-link">Instagram</a>
+    <a href="www.linkedin.com/in/seohakim01" class="footer-link">LinkedIn</a>
+    <a href="#" class="footer-link">Flick me an email</a>
+  </div>
+  <p class="footer-copyright">
+    © 2026 Seoha Kim. <em>All rights reserved</em>
+  </p>
+  <button class="to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span>TO TOP</span>
+  </button>
+</footer>
+
+</body>
+</html>
