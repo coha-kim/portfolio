@@ -1,0 +1,88 @@
+/* ─── TYPE SCALE ─── */
+.text-hero {
+  font-family: var(--geist);
+  font-size: var(--size-hero);
+  font-weight: 600;
+  color: var(--blue);
+  line-height: 1;
+  letter-spacing: var(--track-hero);
+}
+
+.title {
+  font-family: var(--switzer);
+  font-size: 6.25rem;
+  font-weight: 400;
+  color: #111;
+  line-height: 1;
+}
+
+.subhead-1 {
+  font-family: var(--switzer);
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.45;
+  letter-spacing: -0.308px;
+}
+
+.subhead-2 {
+  font-family: var(--switzer);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.45;
+  letter-spacing: -0.264px;
+}
+
+.body {
+  font-family: var(--switzer);
+  font-size: var(--size-body);
+  font-weight: 400;
+  color: #000;
+  line-height: 1.45;
+  letter-spacing: var(--track-body);
+}
+
+.caption {
+  font-family: var(--switzer);
+  font-size: var(--size-caption);
+  font-weight: 400;
+  color: #000;
+  line-height: 1.45;
+  letter-spacing: -0.154px;
+}
+
+.mono-semibold {
+  font-family: var(--geist);
+  font-size: var(--size-body);
+  font-weight: 500;
+  color: #1e1e1e;
+  line-height: 1.4;
+  letter-spacing: var(--track-body);
+}
+
+.mono-regular {
+  font-family: var(--geist);
+  font-size: var(--size-body);
+  font-weight: 400;
+  color: #1e1e1e;
+  line-height: 1.4;
+  letter-spacing: var(--track-body);
+}
+
+.mono-light {
+  font-family: var(--geist);
+  font-size: 1rem;
+  font-weight: 300;
+  color: #1e1e1e;
+  line-height: 1.4;
+  letter-spacing: -0.176px;
+}
+
+.velvelyne {
+  font-family: var(--velvelyne);
+  font-style: normal;
+  font-size: 1.25rem;
+  color: #000;
+  line-height: 1.1;
+}

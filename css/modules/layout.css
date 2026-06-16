@@ -1,0 +1,196 @@
+/* ─── 6-COLUMN STRETCH GRID ─── */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--grid-gap);
+  padding: 0 var(--grid-margin);
+}
+
+/* ─── LANDING PAGE LAYOUT ─── */
+.landing-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.landing-main {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+/* LANDING PAGE WORK/PLAY/ABOUT */
+.landing-nav {
+  display: flex;
+  flex-shrink: 0;
+  width: 605px;
+  align-items: stretch;
+}
+
+/* WORK — wide column with project thumbnails */
+.landing-nav-work {
+  width: 361px;
+  flex-shrink: 0;
+  border-left: 1px dashed var(--ink);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48px;
+}
+
+.landing-nav-label {
+  font-family: var(--geist);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* PLAY / ABOUT — narrow columns */
+.landing-nav-slim {
+  flex: 1;
+  border-left: 1px dashed var(--ink);
+  height: 100vh;
+  padding-top: 48px;
+  padding-left: 31px;
+  font-family: var(--geist);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Stacked project thumbnails inside WORK column */
+.landing-work-thumbs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  width: 245px;
+}
+
+.landing-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.landing-thumb-img {
+  width: 100%;
+  aspect-ratio: 1213 / 753;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-thumb-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.landing-thumb-name {
+  font-family: var(--switzer);
+  font-size: 1.0625rem;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: -0.187px;
+  color: #000;
+}
+
+/* ─── LANDING HERO ─── */
+.hero-name {
+  position: absolute;
+  left: 58px;
+  top: 541px;
+  font-family: var(--geist);
+  font-size: var(--size-hero);
+  font-weight: 600;
+  color: var(--blue);
+  line-height: 1;
+  letter-spacing: var(--track-hero);
+  white-space: nowrap;
+}
+
+/* ─── PAGE STRUCTURE (inner pages) ─── */
+.page {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--bg-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 20px 0;  
+  overflow: hidden;
+  z-index: 10;
+}
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 30px; }
+
+.sidebar-section { display: flex; flex-direction: column; gap: 12px; }
+
+.nav-heading {
+  font-family: var(--geist);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #111;
+  line-height: 1;
+}
+
+.project-list { display: flex; flex-direction: column; gap: 8px; }
+
+.project-btn.active {
+  font-weight: 600;
+}
+
+.project-btn {
+  font-family: var(--geist);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #121212;
+  line-height: 1;
+  letter-spacing: -0.198px;
+  height: 20px;
+  overflow: hidden;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-links { display: flex; flex-direction: column; gap: 16px; }
+
+.sidebar-name {
+  font-family: var(--geist);
+  font-size: var(--size-name);
+  font-weight: 500;
+  color: #000;
+  line-height: 1.04;
+  letter-spacing: var(--track-name);
+  padding-bottom: 23px;  /* 982 − 857 − ~102 = 23px bottom gap in Figma */
+}
+
+/* ─── MAIN CONTENT (inner pages) ─── */
+.main {
+  /* width: calc(1512px - var(--sidebar-width)); */
+  width: calc(100vw - var(--sidebar-width));
+  flex-shrink: 0;
+}

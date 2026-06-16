@@ -1,0 +1,45 @@
+/* ─── DIVIDERS ─── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #000;
+}
+
+.divider-dashed {
+  width: 100%;
+  height: 0;
+  border-top: 1px dashed #000;
+}
+
+/* ─── IMAGES ─── */
+.img-crop {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+/* ─── TWO-COLUMN GRID ─── */
+.col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* ─── SECTION SPACING ─── */
+.s16  { margin-top: 16px; }
+.s40  { margin-top: 40px; }
+.s60  { margin-top: 60px; }
+.s80  { margin-top: 80px; }
+.s180 { margin-top: 180px; }
+.pad  { padding: 0 24px; }
+.newsection { margin-bottom: 180px; }
+.img-txt    { margin-bottom: 36px; }
+
+/* ─── ROW-INTERNAL OFFSETS ─── */
+.pt-240 { padding-top: 240px; }
+.pt-280 { padding-top: 280px; }
+.pt-320 { padding-top: 320px; }
