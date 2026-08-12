@@ -9,46 +9,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    html, body { overflow: hidden; }
+
+    #hero-canvas { transition: background-color 0.6s ease; }
+    #page-wrap.activated #hero-canvas { background-color: #03104C; }
+
+    #hero-letters span { color: #000; transition: color 0.2s ease; }
+    #page-wrap.activated #hero-letters span { color: #fff; }
+
+    .work-thumb-img { filter: grayscale(1); transition: filter 0.6s ease; }
+    #page-wrap.activated .work-thumb-img { filter: grayscale(0); }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
+  <script src="js/hero-interaction.js" defer></script>
 </head>
 <body>
 
-<div style="position:relative; width:100vw; min-height:982px; background:#fff;">
+<div id="page-wrap" style="position:relative; width:100vw; height:100vh; min-height:982px; background:#fff;">
 
-  <!-- ─── LETTER BOXES: "seoha" ─── -->
-  <div style="position:absolute; left:80px; top:511px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">s</span>
-  </div>
-  <div style="position:absolute; left:222px; top:511px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">e</span>
-  </div>
-  <div style="position:absolute; left:calc(16.67% + 112px); top:511px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">o</span>
-  </div>
-  <div style="position:absolute; left:calc(16.67% + 250px); top:511px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">h</span>
-  </div>
-  <div style="position:absolute; left:calc(33.33% + 136px); top:511px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">a</span>
-  </div>
-
-  <!-- ─── LETTER BOXES: "kim" ─── -->
-  <div style="position:absolute; left:80px; top:718px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">k</span>
-  </div>
-  <div style="position:absolute; left:222px; top:718px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">i</span>
-  </div>
-  <div style="position:absolute; left:calc(16.67% + 112px); top:718px; width:130px; height:193px; background:var(--blue); overflow:hidden;">
-    <span style="position:absolute; left:5px; top:-14px; font-family:var(--geist); font-size:200px; font-weight:600; color:#fff; line-height:1; letter-spacing:-2.2px;">m</span>
-  </div>
+  <!-- ─── HERO PHYSICS INTERACTION LAYER (bounded to hero/nav divider) ─── -->
+  <canvas id="hero-canvas" style="position:absolute; left:0; top:0; bottom:0; width:calc(50% + 151px);"></canvas>
+  <div id="hero-letters" style="position:absolute; left:0; top:0; bottom:0; width:calc(50% + 151px); overflow:hidden; pointer-events:none;"></div>
 
   <!-- ─── VERTICAL DASHED DIVIDERS ─── -->
   <!-- Hero / WORK boundary -->
-  <div style="position:absolute; left:calc(50% + 151px); top:0; height:100vh; border-left:1px dashed #000;"></div>
+  <div style="position:absolute; left:calc(50% + 151px); top:0; bottom:0; border-left:1px dashed #000;"></div>
   <!-- WORK / PLAY boundary -->
-  <div style="position:absolute; left:calc(83.33% + 8px); top:0; height:100vh; border-left:1px dashed #000;"></div>
+  <div style="position:absolute; left:calc(83.33% + 8px); top:0; bottom:0; border-left:1px dashed #000;"></div>
   <!-- PLAY / ABOUT boundary -->
-  <div style="position:absolute; left:calc(83.33% + 128px); top:0; height:100vh; border-left:1px dashed #000;"></div>
+  <div style="position:absolute; left:calc(83.33% + 128px); top:0; bottom:0; border-left:1px dashed #000;"></div>
 
   <!-- ─── NAV LABELS ─── -->
   <p style="position:absolute; left:calc(66.67% + 50px); top:48px; font-family:var(--geist); font-size:24px; font-weight:400; color:#000; line-height:1; white-space:nowrap; margin:0;">WORK</p>
@@ -60,28 +50,28 @@
 
     <a href="pages/akea-haus.html" style="display:flex; flex-direction:column; gap:2px; text-decoration:none; color:inherit;">
       <div style="width:100%; aspect-ratio:1213/753; overflow:hidden;">
-        <img src="assets/images/lp-thumb-akea.webp" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Akea Haus">
+        <img src="assets/images/lp-thumb-akea.webp" class="work-thumb-img" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Akea Haus">
       </div>
       <p style="font-family:var(--switzer); font-size:17px; font-weight:300; color:#000; line-height:1.5; letter-spacing:-0.187px; margin:0;">Akea Haus</p>
     </a>
 
     <a href="#" style="display:flex; flex-direction:column; gap:2px; text-decoration:none; color:inherit;">
       <div style="width:100%; aspect-ratio:1213/753; overflow:hidden;">
-        <img src="assets/images/lp-thumb-bakatchae.webp" style="width:100%; height:100%; object-fit:cover; object-position:bottom; display:block;" alt="Bakatchae">
+        <img src="assets/images/lp-thumb-bakatchae.webp" class="work-thumb-img" style="width:100%; height:100%; object-fit:cover; object-position:bottom; display:block;" alt="Bakatchae">
       </div>
       <p style="font-family:var(--switzer); font-size:17px; font-weight:300; color:#000; line-height:1.5; letter-spacing:-0.187px; margin:0;">Bakatchae</p>
     </a>
 
     <a href="pages/shape-of-days.html" style="display:flex; flex-direction:column; gap:2px; text-decoration:none; color:inherit;">
       <div style="width:100%; aspect-ratio:1213/753; overflow:hidden; position:relative;">
-        <img src="assets/images/lp-thumb-sod.webp" style="position:absolute; width:105.78%; height:120.84%; left:-2.89%; top:-10.42%; max-width:none;" alt="Shape of Days">
+        <img src="assets/images/lp-thumb-sod.webp" class="work-thumb-img" style="position:absolute; width:105.78%; height:120.84%; left:-2.89%; top:-10.42%; max-width:none;" alt="Shape of Days">
       </div>
       <p style="font-family:var(--switzer); font-size:17px; font-weight:300; color:#000; line-height:1.5; letter-spacing:-0.187px; margin:0;">Shape of Days</p>
     </a>
 
     <a href="#" style="display:flex; flex-direction:column; gap:2px; text-decoration:none; color:inherit;">
       <div style="width:100%; aspect-ratio:1213/753; overflow:hidden;">
-        <img src="assets/images/lp-thumb-lumiere.webp" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Lumiere">
+        <img src="assets/images/lp-thumb-lumiere.webp" class="work-thumb-img" style="width:100%; height:100%; object-fit:cover; display:block;" alt="Lumiere">
       </div>
       <p style="font-family:var(--switzer); font-size:17px; font-weight:300; color:#000; line-height:1.5; letter-spacing:-0.187px; margin:0;">Lumiere</p>
     </a>

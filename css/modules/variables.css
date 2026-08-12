@@ -4,6 +4,9 @@
   --geist:     'Geist Mono', monospace;
   --velvelyne: Georgia, 'Times New Roman', serif;
 
+  /* Colors */
+  --blue: #0047FF;
+
   /* Grid */
   --grid-margin:   24px;
   --grid-gap:      16px;
