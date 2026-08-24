@@ -1,0 +1,72 @@
+/* ── Design tokens, pulled from Figma (portfolio 2026) ────────────────── */
+
+:root {
+  /* Font families */
+  --font-display: 'Switzer Variable', 'Switzer', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --switzer: var(--font-display);
+  --geist: var(--font-mono);
+
+  /* Font weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* Colors */
+  --color-ink: #000000;
+  --color-white: #ffffff;
+  --color-accent: #112490;
+
+  /* Type scale — desktop/title */
+  --text-title-family: var(--font-display);
+  --text-title-weight: var(--fw-medium);
+  --text-title-size: 100px;
+  --text-title-line-height: normal;
+  --text-title-letter-spacing: 0;
+
+  /* Type scale — desktop/subheading 2 */
+  --text-subheading-2-family: var(--font-display);
+  --text-subheading-2-weight: var(--fw-medium);
+  --text-subheading-2-size: 28px;
+  --text-subheading-2-line-height: 1.4;
+  --text-subheading-2-letter-spacing: 0;
+
+  /* Type scale — desktop/subheading 3 */
+  --text-subheading-3-family: var(--font-display);
+  --text-subheading-3-weight: var(--fw-regular);
+  --text-subheading-3-size: 24px;
+  --text-subheading-3-line-height: 1.4;
+  --text-subheading-3-letter-spacing: 0;
+
+  /* Type scale — desktop/body */
+  --text-body-family: var(--font-display);
+  --text-body-weight: var(--fw-light);
+  --text-body-size: 17px;
+  --text-body-line-height: 1.5;
+  --text-body-letter-spacing: -0.011em;
+
+  /* Type scale — desktop/tag */
+  --text-tag-family: var(--font-mono);
+  --text-tag-weight: var(--fw-light);
+  --text-tag-size: 17px;
+  --text-tag-line-height: normal;
+  --text-tag-letter-spacing: 0;
+
+  /* Grid — page level (1512px viewport frames: landing page, top-nav) */
+  --grid-page-width: 1512px;
+  --grid-page-columns: 6;
+  --grid-page-gutter: 16px;
+  --grid-page-margin: 80px;
+
+  /* Grid — content column (flexible, case-study body content) */
+  --grid-content-columns: 6;
+  --grid-content-gutter: 20px;
+  --grid-content-margin: 120px;
+
+  /* Grid — mobile (402px viewport) */
+  --grid-mobile-width: 402px;
+  --grid-mobile-columns: 4;
+  --grid-mobile-gutter: 16px;
+  --grid-mobile-margin: 16px;
+}

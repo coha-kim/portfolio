@@ -1,0 +1,141 @@
+/* ── Landing page (Figma: portfolio 2026, node 3109:1030) ─────────────── */
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* fills the viewport — no top-nav on this page currently */
+  background: var(--color-white);
+}
+
+.landing-hero {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.landing-signature {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  font-size: 40px;
+  line-height: 1.4;
+  letter-spacing: -0.44px;
+  color: var(--color-accent);
+}
+
+.landing-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 0 60px 60px;
+}
+
+/* "Vertical flexbox with gap of 17px, aligned left. The left and bottom
+   margin are 60px" annotation — margins come from .landing-footer's
+   padding above. */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 17px;
+  flex: 1;
+  min-width: 0;
+}
+
+.category-row {
+  display: flex;
+  align-items: center; /* "dashed line should be aligned horizontally central" — centers on WORK's line box */
+  gap: 24px;
+  width: 100%;
+}
+
+.category-heading {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-light);
+  font-size: 40px;
+  line-height: 1.4;
+  letter-spacing: -0.55px;
+  color: var(--color-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.category-line {
+  flex: 1;
+  border-top: 3px dashed var(--color-ink);
+}
+
+/* "scroll snap - if not actively in the centre, other projects should be
+   black and white" annotation — a peek-height scrollable carousel,
+   driven by js/project-list.js toggling .is-active via IntersectionObserver. */
+.project-list {
+  width: 245px;
+  height: 220px;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  scrollbar-width: none;
+}
+
+.project-list::-webkit-scrollbar {
+  display: none;
+}
+
+.project-item {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 1213.45 / 753.22;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.3s ease;
+}
+
+.project-item.is-active .project-thumb img {
+  filter: grayscale(0);
+}
+
+.project-thumb--bottom img {
+  object-position: bottom;
+}
+
+.project-thumb--sod img {
+  position: absolute;
+  width: 105.78%;
+  height: 120.84%;
+  left: -2.89%;
+  top: -10.42%;
+  max-width: none;
+  object-fit: unset;
+}
+
+.project-caption {
+  margin: 0;
+  font-family: var(--text-body-family);
+  font-weight: var(--fw-light);
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.187px;
+  color: var(--color-ink);
+}

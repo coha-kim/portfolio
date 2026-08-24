@@ -1,0 +1,98 @@
+/* ── Type scale utility classes, built on tokens in variables.css ─────── */
+
+.text-title {
+  margin: 0;
+  font-family: var(--text-title-family);
+  font-weight: var(--text-title-weight);
+  font-size: var(--text-title-size);
+  line-height: var(--text-title-line-height);
+  letter-spacing: var(--text-title-letter-spacing);
+}
+
+.text-subheading-2 {
+  margin: 0;
+  font-family: var(--text-subheading-2-family);
+  font-weight: var(--text-subheading-2-weight);
+  font-size: var(--text-subheading-2-size);
+  line-height: var(--text-subheading-2-line-height);
+  letter-spacing: var(--text-subheading-2-letter-spacing);
+}
+
+.text-subheading-3 {
+  margin: 0;
+  font-family: var(--text-subheading-3-family);
+  font-weight: var(--text-subheading-3-weight);
+  font-size: var(--text-subheading-3-size);
+  line-height: var(--text-subheading-3-line-height);
+  letter-spacing: var(--text-subheading-3-letter-spacing);
+}
+
+.text-body {
+  margin: 0;
+  font-family: var(--text-body-family);
+  font-weight: var(--text-body-weight);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
+  letter-spacing: var(--text-body-letter-spacing);
+}
+
+.text-tag {
+  margin: 0;
+  font-family: var(--text-tag-family);
+  font-weight: var(--text-tag-weight);
+  font-size: var(--text-tag-size);
+  line-height: var(--text-tag-line-height);
+  letter-spacing: var(--text-tag-letter-spacing);
+}
+
+.text-nav-link {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-regular);
+  font-size: 20px;
+  line-height: normal;
+}
+
+.text-signature {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semibold);
+  font-size: 17px;
+  line-height: normal;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* Case-study project meta labels (e.g. ROLES, SOLO PROJECT, ACADEMIC) —
+   shared across every project page's details block. */
+.project-details-text {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-medium);
+  font-size: 17px;
+  line-height: 1.4;
+  letter-spacing: -0.187px;
+}
+
+/* Case-study meta copy (header description, role list values) — Geist
+   Mono at a smaller size than the standard tag/body scale. */
+.text-meta {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-light);
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.176px;
+}
+
+/* Case-study header description, Regular weight variant (e.g. Shape of
+   Days uses 18px Regular where Akea Haus used 16px Light for the same
+   role — a real per-project deviation, not a mistake). */
+.text-meta-regular {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-regular);
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.198px;
+}

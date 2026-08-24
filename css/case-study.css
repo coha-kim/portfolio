@@ -1,0 +1,267 @@
+/* ── Case-study pages (Figma: portfolio 2026, node 3101:621) ──────────── */
+/* Most rows in this design are NOT evenly-split grid columns — they're
+   bespoke-width flex groups anchored to the left margin (measured from
+   Figma, several fall well short of the full 1272px content width). So
+   this file leans on flexbox per-section (as asked) rather than forcing
+   everything into content-grid spans; content-grid is used only where
+   Figma genuinely splits a row into even columns. */
+
+:root {
+  /* Vertical rhythm between content blocks, measured from Figma —
+     not a single uniform default, so the real spacing pattern is kept. */
+  --space-xs: 12px;
+  --space-sm: 40px;
+  --space-md: 80px;
+  --space-lg: 120px;
+  --space-xl: 240px;
+}
+
+.case-study {
+  background: var(--color-white);
+  color: var(--color-ink);
+}
+
+.case-study-content {
+  padding: 40px var(--grid-content-margin) 40px;
+}
+
+.mt-xs { margin-top: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+
+/* Flexible 6-column grid — used where a row is genuinely full-width and
+   evenly split (see memory "grid-system": repeat(6,1fr), not fixed px). */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-content-columns), 1fr);
+  gap: var(--grid-content-gutter);
+}
+
+.cs-hero img {
+  display: block;
+  width: 100%;
+  height: 606px;
+  object-fit: cover;
+}
+
+.cs-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.cs-title {
+  margin: 0;
+  font-family: var(--text-title-family);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-title-size);
+  line-height: var(--text-title-line-height);
+}
+
+.cs-divider {
+  border-top: 1px solid var(--color-ink);
+  margin: 0;
+}
+
+.cs-header-details {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-left: auto;
+}
+
+.cs-header-desc {
+  width: 409px;
+}
+
+.cs-header-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 199px;
+}
+
+.cs-header-type {
+  width: 197px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Two-column heading + body pair, bespoke widths per instance. */
+.cs-row {
+  display: flex;
+}
+
+.cs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cs-col--gapped {
+  gap: 12px;
+}
+
+/* Bottom-aligns to its row partner instead of the default flex
+   stretch/start — e.g. "Care begins.." text ends flush with the
+   target-audience image beside it, even though it's shorter. */
+.cs-col--align-end {
+  justify-content: flex-end;
+}
+
+/* Row of evenly-spaced full-width images (brand images, ui images). */
+.cs-image-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cs-image-row img {
+  flex: 1;
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+/* Eyebrow tag + heading + body stack (section intro) — contiguous in
+   Figma (0 gap), spacing comes from line-height alone. */
+.cs-section-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cs-eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Stacked brand-strategy items — all left-aligned. */
+.cs-strategies {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.cs-strategy-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Bespoke asymmetric image pair/row — widths, height and gap set per
+   instance via inline style, since Figma never repeats the same
+   proportions twice for these (match-test+label, the SOD image pairs). */
+.cs-image-pair {
+  display: flex;
+}
+
+.cs-image-pair img {
+  display: block;
+  object-fit: cover;
+}
+
+.cs-target-audience img {
+  display: block;
+  width: 626px;
+  height: 374px;
+  object-fit: cover;
+}
+
+.cs-full-image img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Custom-crop image wrapper — width/height/left/top set per instance via
+   inline style (Figma's percentage-offset crops), since no two match. */
+.cs-crop {
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+.cs-ui-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cs-ui-row .cs-weball {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4096 / 1820;
+  object-fit: cover;
+}
+
+.cs-ui-row .cs-image-row {
+  gap: 10px;
+}
+
+.cs-ui-row .cs-image-row img {
+  height: 419px;
+}
+
+/* Feature blurb triad — narrower than the content column and doesn't
+   reach the right edge in Figma, so widths/gap are bespoke. */
+.cs-feature-row {
+  display: flex;
+  gap: 48px;
+  max-width: 974px;
+}
+
+.cs-feature {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Process section: text column + stacked reference images. */
+.cs-process-col {
+  width: 411px;
+}
+
+.cs-process-images {
+  width: 626px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-process-images-row {
+  display: flex;
+  gap: 16px;
+}
+
+.cs-process-images img {
+  display: block;
+  object-fit: cover;
+}
+
+.cs-process-images .bordered {
+  border: 0.5px solid var(--color-ink);
+}
+
+/* Bulleted list matching text-body styling. */
+.cs-list {
+  margin: 0;
+  padding-left: 25.5px;
+  list-style: disc;
+}
+
+.cs-list li {
+  font-family: var(--text-body-family);
+  font-weight: var(--fw-light);
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.187px;
+}

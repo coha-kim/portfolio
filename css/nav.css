@@ -1,0 +1,51 @@
+/* ── Top nav (Figma: portfolio 2026, node 3109:1077) ──────────────────── */
+/* Note: this frame's left/right inset is 30px, not --grid-page-margin
+   (80px) — that token belongs to a different frame and doesn't apply here. */
+
+.top-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: var(--color-white);
+  border-bottom: 3px dashed var(--color-accent);
+  color: var(--color-ink);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-primary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-primary a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-divider {
+  flex: 1;
+  align-self: flex-start;
+  border-top: 1px solid var(--color-ink);
+  /* top offset centers the line on WORK's / the project list's line box,
+     not the full height of either stack */
+  margin: 12px 12px 0 12px;
+}
+
+.nav-secondary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.nav-projects a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-secondary .text-signature {
+  margin-top: auto;
+}
