@@ -1,0 +1,183 @@
+/* ── About page (Figma: portfolio 2026, node 3109:1017) ───────────────── */
+
+.about-content {
+  padding: 0 var(--grid-content-margin) var(--space-lg);
+}
+
+.about-intro {
+  margin: 100px auto 0;
+  width: 411px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.about-location {
+  margin: 0;
+  text-align: center;
+}
+
+.about-portrait-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.about-portrait {
+  display: block;
+  width: 233px;
+  height: 351px;
+  object-fit: cover;
+}
+
+.about-bio {
+  margin: 0;
+  text-align: center;
+}
+
+.about-workspace-row {
+  margin-top: 158px;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.about-workspace-row img {
+  display: block;
+  width: 411px;
+  height: 308px;
+  object-fit: cover;
+}
+
+.about-workspace-caption {
+  margin: 0;
+  width: 195px;
+}
+
+/* Group both link-trees into grid columns 3–6 of the content grid. */
+.about-links {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-content-columns), 1fr);
+  gap: var(--grid-content-gutter);
+}
+
+.about-links-col {
+  /* label's Figma x (766) is content-relative 646px = exactly the start
+     of column 4 (col width (1272-5*20)/6 = 195.33px) — not column 3 */
+  grid-column: 4 / 7;
+}
+
+/* ── Link-tree connectors ───────────────────────────────────────────── */
+/* Rebuilt as a reusable, self-consistent tree component (rather than
+   copying Figma's 11 individually-positioned SVG line segments). Every
+   "line + text" pairing (the label's line and every branch tick) is a
+   real flexbox row with align-items:center — genuine centering, not
+   absolute-position/magic-number hacks — and every gap between a line
+   and its text is 9px via the flex `gap` property. The vertical trunk
+   is a ::before sized with top/bottom insets (not border-left, which
+   would run the full box height) so it starts and ends exactly at the
+   first and last branch's line, never overshooting past the last one. */
+.link-tree {
+  display: flex;
+  align-items: flex-start;
+}
+
+.link-tree:first-of-type {
+  margin-top: var(--space-lg);
+}
+
+.link-tree + .link-tree {
+  margin-top: var(--space-sm);
+}
+
+.link-tree-label {
+  margin: 0;
+  flex-shrink: 0;
+  height: 26px; /* matches list-item row height, so the label's line
+    lands at the same y as the first branch tick */
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.link-tree-label::after {
+  content: '';
+  width: 12px;
+  height: 1px;
+  margin-left: 9px; /* 9px gap between the label text and its line */
+  background: var(--color-ink);
+}
+
+/* "SEE ME IN" only — its own trunk would otherwise land ~51px left of
+   "MORE ABOUT ME?"'s (shorter label text), leaving the two trees
+   misaligned. Width is set at runtime (js/about-links.js) to exactly
+   match "MORE ABOUT ME?"'s rendered width — `ch` units don't track
+   Geist Mono's true advance width closely enough for this. Its line
+   then fills the rest of that width, extending it without moving the
+   label text or any list item. The "MORE ABOUT ME?" rule above is
+   read from, never written to. */
+.link-tree-label--wide::after {
+  flex: 1;
+  width: auto;
+}
+
+.link-tree-list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Trunk — top/bottom insets land it exactly on the first and last
+   branch-tick's line (each tick sits 13px into its 26px-tall row),
+   regardless of how many items or how tall any nested sub-tree is. */
+.link-tree-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  bottom: 13px;
+  width: 1px;
+  background: var(--color-ink);
+}
+
+.link-tree-list a,
+.link-tree-list span {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* The tick + text row — shared by every branch, leaf or parent, so a
+   parent item's own branch line still centers on just its first line
+   of text rather than its whole nested sub-tree. */
+.link-tree-branch {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 26px;
+}
+
+.link-tree-branch::before {
+  content: '';
+  flex-shrink: 0;
+  width: 12px;
+  height: 1px;
+  background: var(--color-ink);
+}
+
+/* Sub-tree items (e.g. Tether/Sequence under "2026 BEST AWARDS FINALIST")
+   are Geist Mono Regular, not Medium like their parent. */
+.link-tree-list--regular {
+  font-weight: var(--fw-regular);
+}
+
+.link-tree-list .link-tree-list {
+  gap: 4px;
+  margin-top: 4px;
+}

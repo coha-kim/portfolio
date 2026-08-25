@@ -1,9 +1,18 @@
 /* ── Landing page (Figma: portfolio 2026, node 3109:1030) ─────────────── */
 
+/* Lock the page itself from scrolling — the project-list carousel is the
+   only scrollable region on this page. */
+html:has(.landing),
+body:has(.landing) {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
 .landing {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* fills the viewport — no top-nav on this page currently */
+  height: 100vh; /* fills the viewport exactly — no top-nav on this page currently */
   background: var(--color-white);
 }
 
@@ -54,7 +63,7 @@
 .category-heading {
   margin: 0;
   font-family: var(--font-mono);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-extralight);
   font-size: 40px;
   line-height: 1.4;
   letter-spacing: -0.55px;
@@ -66,6 +75,24 @@
 .category-line {
   flex: 1;
   border-top: 3px dashed var(--color-ink);
+  animation: draw-category-line 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+/* A clip-path reveal, not an SVG stroke-dashoffset animation — dashoffset
+   only shifts a repeating dash pattern's phase, it doesn't hide/reveal it
+   (dashes would appear across the full width immediately, just shifting
+   in place). Clipping the already-correct dash pattern left-to-right is
+   what actually makes it look drawn. */
+@keyframes draw-category-line {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-line {
+    animation: none;
+  }
 }
 
 /* "scroll snap - if not actively in the centre, other projects should be

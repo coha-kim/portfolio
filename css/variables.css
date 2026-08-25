@@ -8,6 +8,7 @@
   --geist: var(--font-mono);
 
   /* Font weights */
+  --fw-extralight: 200;
   --fw-light: 300;
   --fw-regular: 400;
   --fw-medium: 500;
