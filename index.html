@@ -3,61 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seoha portfolio</title>
+  <title>Seoha Kim — Experience designer</title>
   <link rel="icon" type="image/png" href="assets/icons/seoha-favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20261104.4">
+  <link rel="stylesheet" href="css/landing.css?v=20261104.4">
 </head>
 <body>
 
-  <main class="landing">
-    <div class="landing-hero">
-      <p class="landing-signature">SEOHA KIM</p>
-    </div>
+  <div class="site">
+    <aside class="side-nav" id="side-nav" data-current="home" data-hide-name></aside>
+    <script src="js/side-nav.js?v=20261104.4"></script>
 
-    <div class="landing-footer">
-      <nav class="category-list">
-        <div class="category-row">
-          <p class="category-heading">WORK</p>
-          <div class="category-line"></div>
-        </div>
-        <a class="category-heading" href="pages/play.html">PLAY</a>
-        <a class="category-heading" href="pages/about.html">ABOUT</a>
-      </nav>
+    <main class="site-main landing-arena" id="arena">
+      <h1 class="visually-hidden">Seoha Kim, experience designer</h1>
 
-      <div id="project-list" class="project-list">
-        <a class="project-item" href="pages/new-akea-haus.html">
-          <div class="project-thumb">
-            <img src="assets/images/lp-thumb-akea.webp" alt="Akea Haus">
-          </div>
-          <p class="project-caption">Akea Haus</p>
-        </a>
-        <a class="project-item" href="pages/bakatchae.html">
-          <div class="project-thumb project-thumb--bottom">
-            <img src="assets/images/lp-thumb-bakatchae.webp" alt="Bakatchae">
-          </div>
-          <p class="project-caption">Bakatchae</p>
-        </a>
-        <a class="project-item" href="pages/new-sod.html">
-          <div class="project-thumb project-thumb--sod">
-            <img src="assets/images/lp-thumb-sod.webp" alt="Shape of Days">
-          </div>
-          <p class="project-caption">Shape of Days</p>
-        </a>
-        <a class="project-item" href="pages/lumiere.html">
-          <div class="project-thumb">
-            <img src="assets/images/lp-thumb-lumiere.webp" alt="Lumiere">
-          </div>
-          <p class="project-caption">Lumiere</p>
-        </a>
+      <div class="sling-lines" aria-hidden="true">
+        <div class="sling-proj"></div>
+        <div class="sling-lead"></div>
+        <div class="sling-dot"></div>
+        <div class="sling-energy t-label"></div>
       </div>
-    </div>
-  </main>
 
-  <script src="js/project-list.js" defer></script>
+      <!-- Static name until landing.js takes over (also the no-JS / reduced-motion view) -->
+      <div class="sling-letters" aria-hidden="true">
+        <span class="sling-static">Seoha Kim</span>
+      </div>
 
+      <p class="sling-hint t-label" aria-hidden="true">Pull my name, then let go</p>
+
+      <div class="sling-controls">
+        <button type="button" data-launch>Launch <span aria-hidden="true">↗</span></button>
+        <button type="button" data-reset hidden>Reset <span aria-hidden="true">↺</span></button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/landing.js?v=20261104.4" defer></script>
 </body>
 </html>

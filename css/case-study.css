@@ -1,267 +1,130 @@
-/* ── Case-study pages (Figma: portfolio 2026, node 3101:621) ──────────── */
-/* Most rows in this design are NOT evenly-split grid columns — they're
-   bespoke-width flex groups anchored to the left margin (measured from
-   Figma, several fall well short of the full 1272px content width). So
-   this file leans on flexbox per-section (as asked) rather than forcing
-   everything into content-grid spans; content-grid is used only where
-   Figma genuinely splits a row into even columns. */
+/* ── Case study (DESIGN.md §5, §6.3) ───────────────────────────────────────
+   Text: label in cols 1–3, content in cols 4–12. No lines anywhere.
+   Images: only four sizes, always in fixed ratios, laid out in five row
+   patterns. Nothing else is allowed:
 
-:root {
-  /* Vertical rhythm between content blocks, measured from Figma —
-     not a single uniform default, so the real spacing pattern is kept. */
-  --space-xs: 12px;
-  --space-sm: 40px;
-  --space-md: 80px;
-  --space-lg: 120px;
-  --space-xl: 240px;
-}
+     Full            .m--full   12 col  21:9   (hero, or one moment per section)
+     Half + Half     .m--half    6 col   4:3
+     Wide + Third    .m--wide    8 col   3:2   + .m--third 4 col 4:5
+     Wide + text     .m--wide    8 col   3:2   + .cs-aside 4 col
+     Third × 3       .m--third   4 col   4:5   (.m--square for 1:1 screens)
 
-.case-study {
-  background: var(--color-white);
-  color: var(--color-ink);
-}
+   Photos fill their box (cover). Diagrams and screenshots go on a plate
+   (.m--plate): grey box, 32px padding, image contained, so every diagram
+   sits in the same-sized frame as a photo would. */
 
-.case-study-content {
-  padding: 40px var(--grid-content-margin) 40px;
-}
+.cs { display: flex; flex-direction: column; }
 
-.mt-xs { margin-top: var(--space-xs); }
-.mt-sm { margin-top: var(--space-sm); }
-.mt-md { margin-top: var(--space-md); }
-.mt-lg { margin-top: var(--space-lg); }
-.mt-xl { margin-top: var(--space-xl); }
+/* ── Header ─────────────────────────────────────────────────────────── */
+.cs-head { padding-top: 28px; row-gap: var(--space-40); }
 
-/* Flexible 6-column grid — used where a row is genuinely full-width and
-   evenly split (see memory "grid-system": repeat(6,1fr), not fixed px). */
-.content-grid {
+.cs-meta {
+  margin: 0;
   display: grid;
-  grid-template-columns: repeat(var(--grid-content-columns), 1fr);
-  gap: var(--grid-content-gutter);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  row-gap: 20px;
+  align-content: start;
 }
+.cs-meta > div { display: flex; flex-direction: column; gap: var(--space-4); }
+.cs-meta dt { color: var(--color-muted); }
+.cs-meta dd { margin: 0; }
 
-.cs-hero img {
-  display: block;
+/* ── Sections ───────────────────────────────────────────────────────── */
+.cs-section { padding-top: var(--section-gap); row-gap: var(--space-24); align-items: start; }
+.cs-section > .t-label { grid-column: 1 / 4; }
+.cs-text { grid-column: 4 / 13; display: flex; flex-direction: column; gap: var(--space-24); }
+.cs-text > .t-body:only-of-type,
+.cs-text > .t-body.is-single { max-width: 40em; }
+
+.cs-cols-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--grid-gutter); row-gap: var(--space-24); }
+.cs-cols-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--grid-gutter); row-gap: var(--space-24); }
+.cs-item { display: flex; flex-direction: column; gap: var(--space-8); }
+
+.cs-question { display: flex; flex-direction: column; gap: 10px; margin-top: var(--space-16); color: var(--color-accent); }
+
+.cs-list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--grid-gutter); row-gap: 6px; }
+.cs-list li { display: flex; align-items: baseline; gap: 12px; }
+.cs-list .t-label { width: 24px; flex: none; color: var(--color-muted); }
+
+/* ── Media rows ─────────────────────────────────────────────────────── */
+.cs-row { padding-top: var(--space-64); row-gap: var(--space-40); align-items: start; }
+.cs-row + .cs-row { padding-top: var(--space-40); }
+
+.m { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
+.m--full  { grid-column: 1 / 13; }
+.m--wide  { grid-column: span 8; }
+.m--half  { grid-column: span 6; }
+.m--third { grid-column: span 4; }
+
+.m-box { position: relative; overflow: hidden; background: var(--color-plate); }
+.m--full  .m-box { aspect-ratio: 21 / 9; }
+.m--wide  .m-box { aspect-ratio: 3 / 2; }
+.m--half  .m-box { aspect-ratio: 4 / 3; }
+.m--third .m-box { aspect-ratio: 4 / 5; }
+.m--square .m-box { aspect-ratio: 1 / 1; }
+
+.m-box > img,
+.m-box > video {
+  position: absolute;
+  top: 0; left: 0;
   width: 100%;
-  height: 606px;
+  height: 100%;
   object-fit: cover;
 }
+.m--plate .m-box > img {
+  top: 32px; left: 32px;
+  width: calc(100% - 64px);
+  height: calc(100% - 64px);
+  object-fit: contain;
+}
 
-.cs-title-block {
+.m figcaption { margin: 0; font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--color-secondary); }
+
+.cs-hero { padding-top: 0; }
+
+/* Wide + text: the text sits in the last 4 columns, bottom-aligned */
+.cs-aside { grid-column: span 4; align-self: end; display: flex; flex-direction: column; gap: var(--space-8); }
+
+/* ── Next project ───────────────────────────────────────────────────── */
+.cs-next {
+  margin-top: var(--space-168);
+  align-self: flex-end;
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  align-items: flex-end;
+  gap: 6px;
+  min-height: var(--tap-min);
+  text-decoration: none;
 }
-
-.cs-title {
-  margin: 0;
-  font-family: var(--text-title-family);
-  font-weight: var(--fw-regular);
-  font-size: var(--text-title-size);
-  line-height: var(--text-title-line-height);
-}
-
-.cs-divider {
-  border-top: 1px solid var(--color-ink);
-  margin: 0;
-}
-
-.cs-header-details {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  margin-left: auto;
-}
-
-.cs-header-desc {
-  width: 409px;
-}
-
-.cs-header-roles {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  width: 199px;
-}
-
-.cs-header-type {
-  width: 197px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Two-column heading + body pair, bespoke widths per instance. */
-.cs-row {
-  display: flex;
-}
-
-.cs-col {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.cs-col--gapped {
-  gap: 12px;
-}
-
-/* Bottom-aligns to its row partner instead of the default flex
-   stretch/start — e.g. "Care begins.." text ends flush with the
-   target-audience image beside it, even though it's shorter. */
-.cs-col--align-end {
-  justify-content: flex-end;
-}
-
-/* Row of evenly-spaced full-width images (brand images, ui images). */
-.cs-image-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.cs-image-row img {
-  flex: 1;
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-}
-
-/* Eyebrow tag + heading + body stack (section intro) — contiguous in
-   Figma (0 gap), spacing comes from line-height alone. */
-.cs-section-intro {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.cs-eyebrow {
-  margin: 0;
+.cs-next__title {
+  font-family: var(--font-title);
+  font-weight: var(--fw-ultralight);
+  font-size: var(--t-next-size);
+  line-height: var(--t-next-lh);
   text-transform: uppercase;
 }
+.cs-next:hover .cs-next__title,
+.cs-next:focus-visible .cs-next__title { font-weight: var(--fw-regular); }
 
-/* Stacked brand-strategy items — all left-aligned. */
-.cs-strategies {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
+/* ── Phone ──────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cs-head { row-gap: var(--space-24); padding-top: 20px; }
+  .cs-section { row-gap: var(--space-16); }
+  .cs-cols-2, .cs-cols-3 { grid-template-columns: minmax(0, 1fr); }
+  .cs-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-row { padding-top: var(--space-40); row-gap: var(--space-24); }
+  .cs-row + .cs-row { padding-top: var(--space-24); }
+  .m--full .m-box { aspect-ratio: 16 / 9; }
+  .cs-hero .m-box { aspect-ratio: 4 / 3; }
+  .m--plate .m-box > img { top: 16px; left: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
+  .cs-next { margin-top: 120px; }
+  .cs-next__title { font-size: 34px; line-height: 38px; }
 }
 
-.cs-strategy-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
+/* Text that continues a section after its images: no new label, smaller gap */
+.cs-section--follow { padding-top: var(--space-64); }
+@media (max-width: 760px) { .cs-section--follow { padding-top: var(--space-40); } }
 
-/* Bespoke asymmetric image pair/row — widths, height and gap set per
-   instance via inline style, since Figma never repeats the same
-   proportions twice for these (match-test+label, the SOD image pairs). */
-.cs-image-pair {
-  display: flex;
-}
-
-.cs-image-pair img {
-  display: block;
-  object-fit: cover;
-}
-
-.cs-target-audience img {
-  display: block;
-  width: 626px;
-  height: 374px;
-  object-fit: cover;
-}
-
-.cs-full-image img {
-  display: block;
-  width: 100%;
-  object-fit: cover;
-}
-
-/* Custom-crop image wrapper — width/height/left/top set per instance via
-   inline style (Figma's percentage-offset crops), since no two match. */
-.cs-crop {
-  position: relative;
-  overflow: hidden;
-}
-
-.cs-crop img {
-  position: absolute;
-  max-width: none;
-}
-
-.cs-ui-row {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.cs-ui-row .cs-weball {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4096 / 1820;
-  object-fit: cover;
-}
-
-.cs-ui-row .cs-image-row {
-  gap: 10px;
-}
-
-.cs-ui-row .cs-image-row img {
-  height: 419px;
-}
-
-/* Feature blurb triad — narrower than the content column and doesn't
-   reach the right edge in Figma, so widths/gap are bespoke. */
-.cs-feature-row {
-  display: flex;
-  gap: 48px;
-  max-width: 974px;
-}
-
-.cs-feature {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-/* Process section: text column + stacked reference images. */
-.cs-process-col {
-  width: 411px;
-}
-
-.cs-process-images {
-  width: 626px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.cs-process-images-row {
-  display: flex;
-  gap: 16px;
-}
-
-.cs-process-images img {
-  display: block;
-  object-fit: cover;
-}
-
-.cs-process-images .bordered {
-  border: 0.5px solid var(--color-ink);
-}
-
-/* Bulleted list matching text-body styling. */
-.cs-list {
-  margin: 0;
-  padding-left: 25.5px;
-  list-style: disc;
-}
-
-.cs-list li {
-  font-family: var(--text-body-family);
-  font-weight: var(--fw-light);
-  font-size: 17px;
-  line-height: 1.5;
-  letter-spacing: -0.187px;
-}
+/* Empty slot while content is still to come */
+.m-empty { position: absolute; inset: 0; display: grid; place-items: center; font-size: var(--t-small-size); color: var(--color-secondary); text-transform: uppercase; letter-spacing: 0.02em; }

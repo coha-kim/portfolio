@@ -1,0 +1,247 @@
+/* ── Side nav, shared on every page (DESIGN.md §6.1) ───────────────────────
+   Markup is rendered by js/side-nav.js into <aside class="side-nav">.      */
+
+.side-nav {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-40);
+  padding: var(--nav-pad);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  --leader-w: 88px;
+}
+
+.side-nav ul { list-style: none; margin: 0; padding: 0; }
+.side-nav a { text-decoration: none; }
+/* In the nav, weight is the only highlight (DESIGN.md §1). */
+
+/* Shared type roles */
+.side-nav .t-nav   { font-size: var(--t-nav-size);   line-height: var(--t-nav-lh); }
+.side-nav .t-label { font-size: var(--t-label-size); line-height: var(--t-label-lh); letter-spacing: var(--t-label-track); }
+
+/* ── Top block ─────────────────────────────────────────────────────────── */
+
+.side-nav__name {
+  display: block;
+  font-family: var(--font-title);
+  font-weight: var(--fw-regular);
+  font-size: var(--t-name-size);
+  line-height: var(--t-name-lh);
+  text-transform: uppercase;
+  margin-bottom: var(--space-24);
+  transition: opacity 600ms ease, visibility 0s linear 0s;
+}
+
+/* Hidden until the landing slingshot fires; keeps its space so nothing jumps. */
+.side-nav__name.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 600ms ease, visibility 0s linear 600ms;
+}
+
+.side-nav__primary a,
+.side-nav__primary span { display: block; }
+
+.side-nav__primary a:hover,
+.side-nav__primary a:focus-visible { font-weight: var(--fw-regular); }
+
+.side-nav__contact { margin-top: var(--space-40); }
+
+.side-nav__contact-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0;
+}
+
+/* Leader: dashed 4 on / 4 off, drawn as a background (DESIGN.md §3). */
+.side-nav__leader {
+  flex: none;
+  width: var(--leader-w);
+  height: 1px;
+  background: var(--line-leader);
+}
+
+.side-nav .side-nav__links {
+  margin-top: var(--space-4);
+  padding-left: calc(var(--leader-w) + var(--space-8));
+}
+
+.side-nav__links a {
+  display: inline-block;
+  padding-block: var(--space-4);
+}
+
+.side-nav__links a:hover,
+.side-nav__links a:focus-visible { font-weight: var(--fw-regular); }
+
+/* ── Bottom block ──────────────────────────────────────────────────────── */
+
+.side-nav__preview[hidden] { display: none; }
+
+.side-nav__preview {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: end;
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+/* Height budget ≈ 650px viewport: the cover shrinks before anything else.
+   Its height is capped by what's left after the rest of the nav (~520px). */
+.side-nav__cover {
+  --cover-max-h: clamp(56px, 100vh - 520px, 200px);
+  position: relative;
+  width: min(100%, calc(var(--cover-max-h) * 1.6));
+  aspect-ratio: var(--ratio-cover);
+  background: var(--color-empty);
+  overflow: hidden;
+}
+
+.side-nav__cover video,
+.side-nav__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.side-nav__cover-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+  text-align: center;
+  font-family: var(--font-title);
+  font-weight: var(--fw-regular); /* below --ultralight-min, so Regular */
+  font-size: var(--t-small-size);
+  line-height: var(--t-small-lh);
+  letter-spacing: var(--t-label-track);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.side-nav__areas {
+  margin: 0;
+  text-align: right;
+  font-size: var(--t-caption-size);
+  line-height: var(--t-caption-lh);
+  color: var(--color-muted);
+}
+
+.side-nav__work-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0;
+  padding-bottom: var(--space-4);
+  border-bottom: var(--line-hairline); /* the only hairline on the site */
+}
+
+.side-nav .side-nav__work { margin-top: var(--space-8); }
+
+.side-nav__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-16);
+  min-height: var(--t-nav-lh);
+}
+
+/* Years are right-aligned so the weight change never pushes them. */
+/* Award pin after a project title (e.g. Best Design Awards Gold on Tether) */
+.side-nav__award {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-left: var(--space-8);
+  vertical-align: -4px;
+}
+
+.side-nav__year {
+  flex: none;
+  text-align: right;
+}
+
+.side-nav__row.is-active .side-nav__title,
+.side-nav__row.is-active .side-nav__year { font-weight: var(--fw-regular); }
+
+/* Unbuilt projects: listed, not linked. */
+.side-nav__row:not(a) { cursor: default; }
+
+.side-nav__copy {
+  margin: var(--space-24) 0 0;
+  font-size: var(--t-small-size);
+  line-height: var(--t-small-lh);
+  color: var(--color-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-nav__name,
+  .side-nav__name.is-hidden { transition: none; }
+}
+
+/* ── Phone: top bar + menu overlay (DESIGN.md §4, §6.6) ─────────────────── */
+
+.top-bar { display: none; }
+
+@media (max-width: 760px) {
+  .site { grid-template-columns: minmax(0, 1fr); }
+
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+    padding: 0 8px 0 16px;
+    background: var(--color-bg);
+  }
+
+  .top-bar__name {
+    display: flex;
+    align-items: center;
+    min-height: var(--tap-min);
+    font-family: var(--font-title);
+    font-weight: var(--fw-regular);
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .top-bar__menu {
+    min-width: var(--tap-min);
+    min-height: var(--tap-min);
+    padding: 0 8px;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font-family: var(--font-title);
+    font-weight: var(--fw-ultralight);
+    font-size: var(--t-label-size);
+    letter-spacing: var(--t-label-track);
+    text-transform: uppercase;
+  }
+
+  /* The nav becomes the MENU screen */
+  .side-nav {
+    position: fixed;
+    inset: 56px 0 0 0;
+    z-index: 20;
+    height: auto;
+    display: none;
+    padding: 16px 20px 24px;
+  }
+  .side-nav.is-open { display: flex; }
+  .side-nav__name { display: none; } /* the name lives in the top bar */
+  body.menu-open { overflow: hidden; }
+}

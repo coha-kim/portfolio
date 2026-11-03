@@ -1,0 +1,87 @@
+/* ── Portfolio 2026 design tokens ─────────────────────────────────────────
+   Source of truth for the redesign. See DESIGN.md for the rules.
+   Every page imports this file; don't hard-code values that exist here.   */
+
+:root {
+  /* ── Type families ─────────────────────────────────────────────────── */
+  /* Title/accent face: always uppercase. PP Supply Sans is used under
+     Pangram Pangram's free personal-portfolio terms (see css/fonts.css). */
+  --font-title: 'PP Supply Sans', 'Geist', system-ui, sans-serif;
+  --font-body:  'Geist', system-ui, sans-serif;
+
+  /* ── Weights (load only these) ─────────────────────────────────────── */
+  --fw-ultralight: 200;  /* Supply Sans at rest            */
+  --fw-regular:    400;  /* Supply Sans when active; Geist body */
+  --fw-medium:     500;  /* Geist small headings only      */
+
+  /* Ultralight is never set below this size. Smaller text uses
+     --fw-regular (Supply Sans) or Geist.                              */
+  --ultralight-min: 16px;
+
+  /* ── Type scale: title face (uppercase) ────────────────────────────── */
+  --t-display-size: 76px;  --t-display-lh: 80px;  --t-display-track: -0.01em;  /* case-study title, 200 */
+  --t-name-size:    34px;  --t-name-lh:    40px;                                /* SEOHA KIM, 400      */
+  --t-nav-size:     22px;  --t-nav-lh:     28px;                                /* PLAY/ABOUT, project rows, 200 → 400 active */
+  --t-label-size:   16px;  --t-label-lh:   20px;  --t-label-track: 0.03em;      /* section names, meta keys, years, 200 */
+  --t-next-size:    44px;  --t-next-lh:    48px;                                /* "Next project" link, 200 */
+  --t-slingshot-size: 64px;                                                     /* landing letters, 400 */
+
+  /* ── Type scale: body face (sentence case, never uppercase) ────────── */
+  --t-lede-size:      22px; --t-lede-lh:      32px;  /* case-study summary          */
+  --t-statement-size: 30px; --t-statement-lh: 38px;  /* problem, research question  */
+  --t-heading-size:   20px; --t-heading-lh:   28px;  /* principle titles, 500       */
+  --t-body-size:      18px; --t-body-lh:      28px;  /* all reading text, 400       */
+  --t-meta-size:      15px; --t-meta-lh:      22px;  /* case-study detail values    */
+  --t-caption-size:   14px; --t-caption-lh:   20px;  /* figure captions             */
+  --t-play-caption-size: 13px;                       /* Play gallery captions       */
+  --t-small-size:     12px; --t-small-lh:     16px;  /* ©, empty-slot labels (Geist / Supply 400) */
+
+  /* Phone overrides (≤760px) */
+  --t-display-size-sm:   42px; --t-display-lh-sm:   44px;
+  --t-statement-size-sm: 23px; --t-statement-lh-sm: 31px;
+  --t-body-size-sm:      17px; --t-body-lh-sm:      26px;
+
+  /* ── Colour ────────────────────────────────────────────────────────── */
+  --color-ink:       #111111;
+  --color-bg:        #FFFFFF;
+  --color-muted:     #3D3D3D;  /* labels in muted state           */
+  --color-secondary: #5E5E5E;  /* captions, ©                     */
+  --color-plate:     #F2F2F0;  /* diagram plates, slingshot arena */
+  --color-empty:     #E2E2DF;  /* empty image slots               */
+  --color-accent:    #112490;  /* research question, slingshot hit, link hover */
+
+  /* ── Lines (only two kinds exist) ──────────────────────────────────── */
+  --line-hairline: 1px solid var(--color-ink);            /* ONLY under "WORK" in the side nav */
+  --line-leader: repeating-linear-gradient(90deg, var(--color-ink) 0 4px, transparent 4px 8px);
+  /* leader = background on a 1px-high element; ONLY nav contact + slingshot pull */
+
+  /* ── Spacing ───────────────────────────────────────────────────────── */
+  --space-4: 4px;  --space-8: 8px;  --space-16: 16px; --space-24: 24px;
+  --space-40: 40px; --space-64: 64px; --space-120: 120px; --space-168: 168px;
+  --section-gap:    var(--space-120);  /* between case-study sections (80px on phone) */
+  --section-gap-sm: 80px;
+
+  /* ── Layout ────────────────────────────────────────────────────────── */
+  --nav-width: clamp(280px, 25vw, 380px);   /* sticky side nav, 100vh */
+  --nav-pad: 36px 28px 28px 36px;
+  --content-max: 1440px;
+  --content-pad: 40px;          /* 16px on phone */
+  --grid-cols: 12;              /* 4 on phone    */
+  --grid-gutter: 20px;          /* 12px on phone */
+  --bp-phone: 760px;            /* below this: top bar + menu overlay, no side nav */
+  --tap-min: 44px;
+
+  /* ── Images ────────────────────────────────────────────────────────── */
+  --ratio-hero: 21 / 9;         /* 4 / 3 on phone */
+  --ratio-wide: 3 / 2;
+  --ratio-half: 4 / 3;
+  --ratio-third: 4 / 5;
+  --ratio-cover: 16 / 10;       /* side-nav project preview */
+  --play-thumb: 132px;          /* long side of Play thumbnails */
+  --play-blur: 6px;             /* blur on non-hovered Play items */
+}
+
+/* Title face helper: always uppercase, Ultralight at rest */
+.t-title { font-family: var(--font-title); font-weight: var(--fw-ultralight); text-transform: uppercase; }
+.t-title.is-active,
+.t-title[aria-current="page"] { font-weight: var(--fw-regular); }

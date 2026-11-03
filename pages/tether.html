@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tether — Seoha Kim</title>
+  <link rel="icon" type="image/png" href="../assets/icons/seoha-favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=20261104.4">
+  <link rel="stylesheet" href="../css/case-study.css?v=20261104.4">
+</head>
+<body>
+
+  <div class="site">
+    <aside class="side-nav" id="side-nav" data-current="tether"></aside>
+    <script src="../js/side-nav.js?v=20261104.4"></script>
+
+    <main class="site-main page cs">
+
+      <!-- Hero: Full, video -->
+      <div class="g cs-row cs-hero">
+        <figure class="m m--full"><div class="m-box">
+          <video class="cs-hero-video" src="../assets/tether/tether-hero.mp4" poster="../assets/tether/tether-hero.webp" muted loop playsinline autoplay aria-label="Tether: a living form of white flowers and foliage, with the Best Design Awards Gold pin"></video>
+        </div></figure>
+      </div>
+
+      <header class="g cs-head">
+        <h1 class="t-display c-1-13">Tether</h1>
+        <p class="t-lede c-1-7">[One or two sentences on what Tether is and who it&rsquo;s for.]</p>
+        <dl class="cs-meta c-8-13">
+          <div><dt class="t-label">Role</dt><dd class="t-meta">[Role]</dd></div>
+          <div><dt class="t-label">Areas</dt><dd class="t-meta">[Areas]</dd></div>
+          <div><dt class="t-label">Year</dt><dd class="t-meta">2026</dd></div>
+          <div><dt class="t-label">Type</dt><dd class="t-meta">[Team / solo] · Academic</dd></div>
+          <div><dt class="t-label">Award</dt><dd class="t-meta">Best Design Awards<br>Gold, Student Digital</dd></div>
+        </dl>
+      </header>
+
+      <!-- 01 -->
+      <section class="g cs-section">
+        <h2 class="t-label">01 — Problem</h2>
+        <div class="cs-text">
+          <p class="t-statement">[Problem statement]</p>
+          <div class="cs-cols-2">
+            <p class="t-body">[Context]</p>
+            <p class="t-body">[Insight]</p>
+          </div>
+        </div>
+      </section>
+      <div class="g cs-row">
+        <figure class="m m--half"><div class="m-box"><span class="m-empty">[Image]</span></div><figcaption>Fig. 1 — [Title]</figcaption></figure>
+        <figure class="m m--half"><div class="m-box"><span class="m-empty">[Image]</span></div><figcaption>Fig. 2 — [Title]</figcaption></figure>
+      </div>
+
+      <!-- 02 -->
+      <section class="g cs-section">
+        <h2 class="t-label">02 — [Section]</h2>
+        <div class="cs-text">
+          <p class="t-statement">[Statement]</p>
+          <p class="t-body is-single">[Body]</p>
+        </div>
+      </section>
+      <div class="g cs-row">
+        <figure class="m m--wide"><div class="m-box"><span class="m-empty">[Image]</span></div><figcaption>Fig. 3 — [Title]</figcaption></figure>
+        <figure class="m m--third"><div class="m-box"><span class="m-empty">[Image]</span></div><figcaption>Fig. 4 — [Title]</figcaption></figure>
+      </div>
+
+      <a class="cs-next" href="new-akea-haus.html">
+        <span class="t-label t-muted">Next project</span>
+        <span class="cs-next__title">Akea Haus <span aria-hidden="true">→</span></span>
+      </a>
+    </main>
+  </div>
+
+  <script>
+    // Respect reduced motion: show the poster frame instead of the looping hero
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+    }
+  </script>
+</body>
+</html>

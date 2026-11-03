@@ -1,0 +1,124 @@
+/* ── Base + two-column shell (DESIGN.md §4) ─────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap; border: 0;
+}
+
+/* [nav: sticky, 100vh] [content: flex 1] */
+.site {
+  display: grid;
+  grid-template-columns: var(--nav-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.site-main {
+  min-width: 0;
+  max-width: var(--content-max);
+}
+
+/* ── Content primitives (DESIGN.md §2, §4, §5) ──────────────────────────── */
+
+.page { padding: 36px var(--content-pad) 64px; }
+
+/* 12-column content grid. Children place themselves with .c-a-b classes. */
+.g {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+}
+.g > * { min-width: 0; }
+
+.c-1-4  { grid-column: 1 / 4; }   .c-1-7  { grid-column: 1 / 7; }
+.c-1-6  { grid-column: 1 / 6; }   .c-6-13 { grid-column: 6 / 13; }
+.c-7-10 { grid-column: 7 / 10; }
+.c-1-8  { grid-column: 1 / 8; }   .c-1-9  { grid-column: 1 / 9; }
+.c-1-11 { grid-column: 1 / 11; }  .c-1-13 { grid-column: 1 / 13; }
+.c-4-8  { grid-column: 4 / 8; }   .c-4-9  { grid-column: 4 / 9; }
+.c-4-12 { grid-column: 4 / 12; }  .c-4-13 { grid-column: 4 / 13; }
+.c-7-13 { grid-column: 7 / 13; }
+.c-8-12 { grid-column: 8 / 12; }  .c-8-13 { grid-column: 8 / 13; }
+.c-9-13 { grid-column: 9 / 13; }  .c-10-13 { grid-column: 10 / 13; }
+
+/* Type roles outside the nav */
+.t-label {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: var(--fw-ultralight);
+  font-size: var(--t-label-size);
+  line-height: var(--t-label-lh);
+  letter-spacing: var(--t-label-track);
+  text-transform: uppercase;
+}
+.t-muted { color: var(--color-muted); }
+.t-accent { color: var(--color-accent); }
+
+.t-display {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: var(--fw-ultralight);
+  font-size: var(--t-display-size);
+  line-height: var(--t-display-lh);
+  letter-spacing: var(--t-display-track);
+  text-transform: uppercase;
+}
+.t-lede      { margin: 0; font-size: var(--t-lede-size); line-height: var(--t-lede-lh); letter-spacing: -0.01em; }
+.t-statement { margin: 0; font-weight: var(--fw-regular); font-size: var(--t-statement-size); line-height: var(--t-statement-lh); letter-spacing: -0.015em; }
+.t-heading   { margin: 0; font-weight: var(--fw-medium); font-size: var(--t-heading-size); line-height: var(--t-heading-lh); }
+.t-body      { margin: 0; font-size: var(--t-body-size); line-height: var(--t-body-lh); letter-spacing: -0.005em; }
+.t-meta      { margin: 0; font-size: var(--t-meta-size); line-height: var(--t-meta-lh); }
+.t-caption   { margin: 0; font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--color-secondary); }
+
+/* Figures */
+.fig { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
+.fig img, .fig video { width: 100%; height: auto; }
+.fig--cover img { height: 100%; object-fit: cover; }
+.ratio-hero  img { aspect-ratio: var(--ratio-hero); object-fit: cover; }
+.ratio-wide  img { aspect-ratio: var(--ratio-wide); object-fit: cover; }
+.ratio-half  img { aspect-ratio: var(--ratio-half); object-fit: cover; }
+.ratio-third img { aspect-ratio: var(--ratio-third); object-fit: cover; }
+
+/* Diagrams with white backgrounds sit on a plate */
+.plate { background: var(--color-plate); padding: 32px; }
+
+/* Phone */
+@media (max-width: 760px) {
+  :root {
+    --content-pad: 16px;
+    --grid-cols: 4;
+    --grid-gutter: 12px;
+    --section-gap: var(--section-gap-sm);
+    --t-display-size: var(--t-display-size-sm);   --t-display-lh: var(--t-display-lh-sm);
+    --t-statement-size: var(--t-statement-size-sm); --t-statement-lh: var(--t-statement-lh-sm);
+    --t-body-size: var(--t-body-size-sm);         --t-body-lh: var(--t-body-lh-sm);
+    --t-lede-size: 19px; --t-lede-lh: 28px;
+  }
+  .g > * { grid-column: 1 / -1 !important; }
+  .page { padding-top: 8px; }
+  .plate { padding: 16px; }
+  .ratio-hero img { aspect-ratio: 4 / 3; }
+}

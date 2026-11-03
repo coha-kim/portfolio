@@ -1,0 +1,97 @@
+/* ── Play (DESIGN.md §6.4) ─────────────────────────────────────────────────
+   Small thumbnails at their own proportions, centred; bottom-aligned so
+   every caption sits 4px under its image and captions line up. */
+
+.play {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-64) var(--content-pad);
+}
+
+.play-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 960px;
+  /* Rows are left-aligned (a short last row starts at the left); each item
+     is centred in its own cell, and the grid as a whole sits centred. */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 152px);
+  justify-content: center;
+  align-items: end;
+  column-gap: var(--space-40);
+  row-gap: 72px;
+}
+
+.play-item {
+  width: 152px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  transition: filter 350ms ease, opacity 350ms ease;
+}
+
+.play-frame {
+  width: 100%;
+  height: calc(var(--play-thumb) * 1.15);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.play-media {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: var(--color-empty);
+  cursor: pointer;
+  max-width: 100%;
+}
+.play-media video,
+.play-media img { width: 100%; height: 100%; object-fit: cover; }
+
+.is-wide  { width: min(100%, calc(var(--play-thumb) * 1.1)); aspect-ratio: 16 / 9; }
+.is-small { width: calc(var(--play-thumb) * 0.85); }
+.is-tall  { height: var(--play-thumb); aspect-ratio: 9 / 16; }
+.is-4x3   { width: var(--play-thumb); aspect-ratio: 4 / 3; }
+.is-5x4   { width: calc(var(--play-thumb) * 0.8); aspect-ratio: 5 / 4; }
+
+.play-cap {
+  margin: 0;
+  text-align: center;
+  font-size: var(--t-play-caption-size);
+  line-height: 18px;
+}
+
+/* One item in focus: the rest blur */
+.play-grid.has-focus .play-item:not(.is-focus) {
+  filter: blur(var(--play-blur));
+  opacity: 0.5;
+}
+
+@media (max-width: 760px) {
+  /* One column down the centre of the screen. Each row is
+     [space | media | caption]: media stays centred, caption sits to its
+     right, vertically centred on the media. */
+  .play { --play-thumb: 150px; min-height: 0; display: block; padding: 40px 16px 80px; }
+  .play-grid { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
+  .play-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--space-16);
+  }
+  .play-frame { grid-column: 2; width: auto; height: auto; display: block; }
+  .play-cap { grid-column: 3; justify-self: start; text-align: left; }
+  .is-wide  { width: calc(var(--play-thumb) * 1.1); }
+  .is-small { width: calc(var(--play-thumb) * 0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-item { transition: none; }
+}
