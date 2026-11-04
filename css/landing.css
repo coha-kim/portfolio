@@ -96,6 +96,38 @@
 .sling-controls button:hover,
 .sling-controls button:focus-visible { font-weight: var(--fw-regular); }
 
+/* Bunny: click and it hands over a note. Sits above the letters, top-left,
+   so the note has room to come out to the right. */
+.buddy {
+  position: absolute;
+  left: var(--content-pad);
+  top: 36px;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--t-body-size);
+  line-height: var(--t-label-lh);
+  transition: color 200ms ease;
+}
+.buddy:focus-visible { outline-color: var(--ink); }
+
+.buddy__art { display: block; white-space: pre; }
+
+/* Out of flow, so the note never changes the button's size */
+.buddy__gift { position: absolute; margin-left: var(--space-4); white-space: pre; }
+.buddy__gift.is-out { animation: buddy-spit 320ms cubic-bezier(.2, 1.4, .4, 1) both; }
+
+@keyframes buddy-spit {
+  from { opacity: 0; transform: translateX(-12px) scale(.6); }
+  to   { opacity: 1; transform: none; }
+}
+
 @media (max-width: 760px) {
   .landing-arena { --t-slingshot-size: 40px; height: calc(100svh - 56px); }
   .sling-hint { bottom: 72px; }
@@ -104,4 +136,5 @@
 @media (prefers-reduced-motion: reduce) {
   .landing-arena { cursor: default; }
   .sling-controls, .sling-hint { display: none; }
+  .buddy__gift.is-out { animation: none; }
 }
