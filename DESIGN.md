@@ -55,7 +55,7 @@ Do **not** add lines under titles, above sections, between rows, in meta details
 - Desktop: `[nav: var(--nav-width), sticky, height 100vh] [content: flex 1, padding var(--content-pad), max-width var(--content-max)]`.
 - Content uses a 12-column grid, 20px gutter. Labels sit in cols 1–3; text in cols 4–12.
 - Section gap `--section-gap` (120px; 80px on phone). 168px before "Next project".
-- Phone (`< 760px`): no side nav. Slim top bar (SEOHA KIM left, MENU right) that opens the nav screen as an overlay; content is a single column with 16px padding.
+- Phone (`< 760px`): no side nav. Slim top bar (bunny left, with `[SEOHA KIM]` off the landing page; MENU right) that opens the nav screen as an overlay; content is a single column with 16px padding.
 - Tap targets ≥ 44px.
 
 ## 5. Images
@@ -80,7 +80,9 @@ Only four sizes, always in fixed ratios. Every image row uses one of five patter
 
 ### 6.1 Side nav (shared on every page; build first)
 Top block:
-- `SEOHA KIM`: name style, links home. **Hidden until the landing slingshot fires** (see 6.2). Hide it with `opacity` + `visibility` so the space is kept and nothing below jumps.
+- Bunny (ASCII character, `js/side-nav.js`): sits at the top of the nav. Rows are laid out with CSS, not typed spaces, so the brackets line up in any font.
+  - Landing: a button with no name beside it. Clicking it hands over `[hi]` then `[coffee?]` (`js/buddy.js`). Faces: `-.-` at rest, `•.•` with a note, `-_-` after the first wall hit until Reset.
+  - Every other page: a home link, `•.•`, holding `[SEOHA KIM]` beside it in Supply Sans 400 (the heaviest cut).
 - `PLAY`, `ABOUT`: nav style. The current page is Regular with `aria-current="page"`.
 - Leader (88px) + `CONTACT`, then indented links: `EMAIL ↗` (mailto:eigengraush@gmail.com), `INSTAGRAM ↗` (instagram.com/gim.coha), `LINKEDIN ↗` (linkedin.com/in/seohakim01). Label style.
 
@@ -101,14 +103,14 @@ Project data:
 | akea | Akea Haus | 2026 | Brand strategy, UX research, app design | assets/images/lp-thumb-akea.webp | pages/new-akea-haus.html |
 
 ### 6.2 Landing (`index.html`): slingshot
-Starting point: the prototype `script.js` (Matter.js 0.19.0). The content area is the arena (`--color-plate` background), with the side nav on the left and the name hidden.
+Starting point: the prototype `script.js` (Matter.js 0.19.0). The content area is the arena (`--color-plate` background), with the side nav on the left.
 - `SEOHA KIM` sits centred in the arena at `--t-slingshot-size`, Supply Sans 400. Each letter is a body sized to its glyph.
 - **Pull in any direction** (2D vector; the current prototype only reads mouseX). Visual pull = `MAX * tanh(d / EASE)` along the drag direction, MAX ≈ 30% of arena width.
 - **Energy law:** spring potential ½kx² becomes kinetic ½mv², so launch speed v ∝ pull distance (energy ∝ pull²). Small random spread per letter (±0.25 rad, ±14% speed).
 - Zero gravity, restitution ≈ 0.86, light air drag. Walls on all four arena edges.
 - While dragging: a dashed leader from the origin to the pulled position, plus a fainter projection the opposite way; opacity scales with the pull.
-- First wall hit: arena turns `--color-accent`, letters turn white. The nav name fades in on that first hit (or when the letters settle).
-- Accessibility & fallbacks: a real visually-hidden `<h1>` exists. Provide `LAUNCH ↗` (keyboard) and `RESET ↺` buttons. Hint "PULL MY NAME, THEN LET GO" fades after the first throw. Reveal the nav name anyway after ~4s idle or on first click; skip the hide for returning visitors (`sessionStorage`) and for `prefers-reduced-motion`.
+- First wall hit: arena turns `--color-accent`, letters turn white.
+- Accessibility & fallbacks: a real visually-hidden `<h1>` exists. Provide `LAUNCH ↗` (keyboard) and `RESET ↺` buttons. Hint "PULL MY NAME, THEN LET GO" fades after the first throw.
 - Build fixes needed vs the prototype: use pointer events + `touch-action: none` on the arena, scale the canvas by `devicePixelRatio`, rebuild the walls on resize, and size the font from the token instead of 2% of width.
 
 ### 6.3 Case study (`pages/new-sod.html`, then `new-akea-haus.html`)

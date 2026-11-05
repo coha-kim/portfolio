@@ -33,10 +33,6 @@
       cover: 'assets/images/lp-thumb-akea.webp', href: 'pages/new-akea-haus.html' }
   ];
 
-  var NAME_KEY = 'seoha:name-revealed';
-  var NAME_IDLE_MS = 4000;
-  var idleTimer = null;
-
   var nav = document.getElementById('side-nav');
   if (!nav) return;
   var current = nav.dataset.current || '';
@@ -47,6 +43,25 @@
     return String(s).replace(/[&<>"]/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
     });
+  }
+
+  // Landing: a button that hands over notes (js/buddy.js). Other pages: awake,
+  // holding the name, and links home.
+  function bunny() {
+    var home = current === 'home';
+    var art =
+      '<span class="buddy__art" aria-hidden="true">' +
+        '<span class="buddy__ears">(\\__/)</span>' +
+        '<span class="buddy__row"><span>(</span><span data-buddy-face>' + (home ? '-.-' : '•.•') + '</span><span>)</span></span>' +
+        '<span class="buddy__row"><span class="buddy__legs">(nn</span>' +
+          '<span class="buddy__arm" data-buddy-arm' + (home ? ' hidden' : '') + '>ノ</span><span>)</span>' +
+          (home ? '<span class="buddy__gift" data-buddy-gift></span>'
+                : '<span class="buddy__gift buddy__gift--name">[Seoha Kim]</span>') +
+        '</span>' +
+      '</span>';
+    return home
+      ? '<button type="button" class="buddy" data-buddy aria-label="Say hi to the bunny">' + art + '</button>'
+      : '<a class="buddy" href="' + url('index.html') + '" aria-label="Seoha Kim, home">' + art + '</a>';
   }
 
   // ── Markup ────────────────────────────────────────────────────────────
@@ -79,8 +94,7 @@
   nav.setAttribute('aria-label', 'Site');
   nav.innerHTML =
     '<div class="side-nav__top">' +
-      '<a class="side-nav__name" href="' + url('index.html') + '"' +
-        (current === 'home' ? ' aria-current="page"' : '') + '>Seoha Kim</a>' +
+      '<div class="side-nav__brand">' + bunny() + '</div>' +
       '<nav aria-label="Main"><ul class="side-nav__primary">' + primary + '</ul></nav>' +
       '<div class="side-nav__contact">' +
         '<h2 class="side-nav__contact-head t-title t-label"><span class="side-nav__leader" aria-hidden="true"></span>Contact</h2>' +
@@ -141,44 +155,11 @@
   });
   reset();
 
-  // ── Name: hidden on the landing page until the slingshot fires ───────
-  var nameEl = nav.querySelector('.side-nav__name');
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function seen() {
-    try { return sessionStorage.getItem(NAME_KEY) === '1'; } catch (e) { return false; }
-  }
-
-  function revealName() {
-    clearTimeout(idleTimer);
-    if (!nameEl.classList.contains('is-hidden')) return;
-    nameEl.classList.remove('is-hidden');
-    nameEl.removeAttribute('tabindex');
-    try { sessionStorage.setItem(NAME_KEY, '1'); } catch (e) {}
-    document.removeEventListener('pointerdown', onDocPointer);
-  }
-
-  if (nav.hasAttribute('data-hide-name') && !reduced && !seen()) {
-    nameEl.classList.add('is-hidden');
-    nameEl.setAttribute('tabindex', '-1');
-    // Fallbacks so the name never stays hidden (the slingshot calls revealName
-    // on its first wall hit).
-    idleTimer = setTimeout(revealName, NAME_IDLE_MS);
-    document.addEventListener('pointerdown', onDocPointer);
-  }
-
-  // A click anywhere reveals the name, except inside the slingshot arena:
-  // there the name should arrive when the letters hit a wall.
-  function onDocPointer(e) {
-    if (e.target && e.target.closest && e.target.closest('.landing-arena')) return;
-    revealName();
-  }
-
   // ── Phone: top bar + menu overlay (DESIGN.md §4, §6.6) ────────────────
   var bar = document.createElement('header');
   bar.className = 'top-bar';
   bar.innerHTML =
-    '<a class="top-bar__name" href="' + url('index.html') + '">Seoha Kim</a>' +
+    bunny() +
     '<button type="button" class="top-bar__menu" aria-controls="side-nav" aria-expanded="false">Menu</button>';
   nav.parentNode.insertBefore(bar, nav);
   var menuBtn = bar.querySelector('.top-bar__menu');
@@ -197,8 +178,6 @@
   if (desktop.addEventListener) desktop.addEventListener('change', function (m) { if (m.matches) setMenu(false); });
 
   window.SideNav = {
-    revealName: revealName,
-    holdName: function () { clearTimeout(idleTimer); }, // slingshot grabbed: wait for the throw
     show: show,
     reset: reset
   };

@@ -3,7 +3,7 @@
    ½kx² of energy, which becomes ½mv² of kinetic energy on release, so the
    launch speed grows linearly with the pull (v = x·√(k/m)) and the energy
    with its square. Zero gravity, bouncy walls, letters collide with each
-   other. The first wall hit turns the arena blue and reveals the nav name. */
+   other. The first wall hit turns the arena blue. */
 
 (function () {
   'use strict';
@@ -134,7 +134,6 @@
     if (!near(p)) return;
     try { arena.setPointerCapture(e.pointerId); } catch (err) {}
     stop();
-    if (window.SideNav && SideNav.holdName) SideNav.holdName();
     var cx = 0, cy = 0;
     var rest = letters.map(function (l) {
       l.vx = l.vy = l.va = 0; cx += l.x; cy += l.y;
@@ -225,7 +224,6 @@
     if (wallHit && !hit) {
       hit = true;
       arena.classList.add('is-hit');
-      if (window.SideNav) SideNav.revealName();
     }
     return moving;
   }
@@ -240,7 +238,6 @@
     if (moving) raf = requestAnimationFrame(frame);
     else {
       raf = 0; mode = 'rest';
-      if (window.SideNav) SideNav.revealName(); // settled without a wall hit
     }
   }
 
