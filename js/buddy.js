@@ -11,22 +11,28 @@
   if (!buddy) return;
 
   var face = buddy.querySelector('[data-buddy-face]');
+  var arm = buddy.querySelector('[data-buddy-arm]');
   var gift = buddy.querySelector('[data-buddy-gift]');
   var said = document.querySelector('[data-buddy-said]');
   var arena = document.getElementById('arena');
 
   var FACES = {
-    rest:  ' (\\__/)\n( -.-   )\n(nn    )',
-    awake: ' (\\__/)\n( •.•  )\n(nnノ)',
-    flat:  ' (\\__/)\n( -_-  )\n(nnノ)'
+    rest:  { eyes: '-.-', arm: false },
+    awake: { eyes: '•.•', arm: true },
+    flat:  { eyes: '-_-', arm: true }
   };
   var NOTES = ['hi', 'coffee?'];
   var SHOW_MS = 2400;
 
   var next = 0, timer = 0;
 
+  function show(f) {
+    face.textContent = f.eyes;
+    arm.hidden = !f.arm;
+  }
+
   function settle() {
-    face.textContent = arena.classList.contains('is-hit') ? FACES.flat : FACES.rest;
+    show(arena.classList.contains('is-hit') ? FACES.flat : FACES.rest);
   }
 
   function clear() {
@@ -42,7 +48,7 @@
 
     clearTimeout(timer);
     clear();
-    face.textContent = FACES.awake;
+    show(FACES.awake);
     void gift.offsetWidth; // restart the animation on quick repeat clicks
     gift.textContent = '[' + note + ']';
     gift.classList.add('is-out');

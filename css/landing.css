@@ -115,12 +115,20 @@
   line-height: var(--t-label-lh);
   transition: color 200ms ease;
 }
-.buddy:focus-visible { outline-color: var(--ink); }
+.buddy:focus-visible { outline-color: var(--ink); outline-offset: var(--space-4); }
 
-.buddy__art { display: block; white-space: pre; }
+/* Each row is laid out, not spaced with characters, so the brackets line up
+   in any font. The ears set the width; face and body fill it edge to edge. */
+.buddy__art { display: inline-grid; justify-items: center; }
+.buddy__ears { white-space: pre; }
+.buddy__row { position: relative; display: flex; justify-content: space-between; justify-self: stretch; white-space: pre; }
+.buddy__legs { margin-right: auto; }
+
+/* Hidden, not removed: the row keeps its width with the arm away */
+.buddy__arm[hidden] { display: inline; visibility: hidden; }
 
 /* Out of flow, so the note never changes the button's size */
-.buddy__gift { position: absolute; margin-left: var(--space-4); white-space: pre; }
+.buddy__gift { position: absolute; left: 100%; top: 0; margin-left: var(--space-16); white-space: pre; }
 .buddy__gift.is-out { animation: buddy-spit 320ms cubic-bezier(.2, 1.4, .4, 1) both; }
 
 @keyframes buddy-spit {
