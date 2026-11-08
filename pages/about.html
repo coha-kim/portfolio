@@ -8,20 +8,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20261105.8">
-  <link rel="stylesheet" href="../css/about.css?v=20261105.8">
+  <link rel="stylesheet" href="../css/style.css?v=20261109.3">
+  <link rel="stylesheet" href="../css/about.css?v=20261109.3">
 </head>
 <body>
 
   <div class="site">
     <aside class="side-nav" id="side-nav" data-current="about"></aside>
-    <script src="../js/side-nav.js?v=20261105.8"></script>
+    <script src="../js/side-nav.js?v=20261109.3"></script>
 
     <main class="site-main page about">
       <h1 class="visually-hidden">About</h1>
 
       <section class="g about-hero">
-        <div class="about-bio c-1-7">
+        <div class="about-bio c-1-6">
+          <p class="about-roll" data-roll aria-hidden="true"><span>[</span><span class="about-roll__win"><span class="about-roll__word">Creative coding</span></span><span>]</span></p>
+          <p class="visually-hidden">I work across creative coding, physical-digital experience, playful tech and user research.</p>
           <p class="t-body">I&rsquo;m an experience designer, digging a little below the obvious. Most of my work starts with a &ldquo;but why?&rdquo; &mdash; a curiosity for why things are the way they are.</p>
           <p class="t-body">I live somewhere between physical and digital, making things that feel unexpected, intuitive, and a little joyful. Turning ideas into something you can actually feel.</p>
         </div>
@@ -31,14 +33,23 @@
         </figure>
       </section>
 
-      <section class="g about-work">
-        <figure class="fig ratio-half c-1-8">
-          <img src="../assets/images/about-workspace.webp" alt="Desk with a laptop, tablet, mechanical keyboard and tools" loading="lazy">
-        </figure>
-        <p class="t-caption about-work__cap c-8-13">This is where everything is made.</p>
+      <section class="g about-hands" aria-labelledby="about-hands-head">
+        <ul class="about-hands__strip c-1-8">
+          <li><img src="../assets/images/about-hobby-1.webp" alt="Working with tweezers on small parts spread across a table" width="540" height="720" loading="lazy"></li>
+          <li><img src="../assets/images/about-hobby-2.webp" alt="Sewing machine, scissors and fabric on a desk" width="540" height="720" loading="lazy"></li>
+          <li><img src="../assets/images/about-hobby-3.webp" alt="Arrows in an archery target" width="540" height="720" loading="lazy"></li>
+          <li><img src="../assets/images/about-hobby-4.webp" alt="Crocheting blue yarn beside a coffee and a doughnut" width="540" height="720" loading="lazy"></li>
+          <li><img src="../assets/images/about-hobby-5.webp" alt="A crocheted brown kiwi held in a hand" width="667" height="720" loading="lazy"></li>
+        </ul>
+        <div class="about-hands__text c-1-6">
+          <h2 class="t-body" id="about-hands-head">Outside of design?</h2>
+          <p class="t-body">I still love making stuff with hands &mdash; crochet, sewing, mechanical keyboards (current obsession) and sometimes outside shooting arrows.</p>
+        </div>
       </section>
     </main>
   </div>
+
+  <script src="../js/about-roll.js?v=20261109.3" defer></script>
 
 </body>
 </html>

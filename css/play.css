@@ -1,70 +1,51 @@
 /* ── Play (DESIGN.md §6.4) ─────────────────────────────────────────────────
-   Small thumbnails at their own proportions, centred; bottom-aligned so
-   every caption sits 4px under its image and captions line up. */
+   Welcome line top right, then a staggered 4-column grid of square tiles.
+   Each band is one row: big tiles span 2 columns, small tiles pin to the
+   top or bottom of the band, so the gaps move around from band to band. */
 
-.play {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-64) var(--content-pad);
-}
+.play-head { margin-bottom: var(--section-gap); }
 
 .play-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%;
-  max-width: 960px;
-  /* Rows are left-aligned (a short last row starts at the left); each item
-     is centred in its own cell, and the grid as a whole sits centred. */
   display: grid;
-  grid-template-columns: repeat(auto-fill, 152px);
-  justify-content: center;
-  align-items: end;
-  column-gap: var(--space-40);
-  row-gap: 72px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-64);
 }
 
 .play-item {
-  width: 152px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-8);
   transition: filter 350ms ease, opacity 350ms ease;
 }
-
-.play-frame {
-  width: 100%;
-  height: calc(var(--play-thumb) * 1.15);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
+.play-item.is-big    { grid-column: span 2; }
+.play-item.at-top    { align-self: start; }
+.play-item.at-bottom { align-self: end; }
 
 .play-media {
   display: block;
+  width: 100%;
+  aspect-ratio: 1;
   padding: 0;
   border: 0;
-  background: var(--color-empty);
+  overflow: hidden;
+  background: var(--color-plate);
   cursor: pointer;
-  max-width: 100%;
 }
 .play-media video,
 .play-media img { width: 100%; height: 100%; object-fit: cover; }
 
-.is-wide  { width: min(100%, calc(var(--play-thumb) * 1.1)); aspect-ratio: 16 / 9; }
-.is-small { width: calc(var(--play-thumb) * 0.85); }
-.is-tall  { height: var(--play-thumb); aspect-ratio: 9 / 16; }
-.is-4x3   { width: var(--play-thumb); aspect-ratio: 4 / 3; }
-.is-5x4   { width: calc(var(--play-thumb) * 0.8); aspect-ratio: 5 / 4; }
+/* Diagrams keep their whole frame, on the plate */
+.is-plate .play-media { padding: var(--space-24); }
+.is-plate .play-media img { object-fit: contain; }
 
 .play-cap {
   margin: 0;
-  text-align: center;
   font-size: var(--t-play-caption-size);
-  line-height: 18px;
+  line-height: var(--t-small-lh);
 }
 
 /* One item in focus: the rest blur */
@@ -74,22 +55,11 @@
 }
 
 @media (max-width: 760px) {
-  /* One column down the centre of the screen. Each row is
-     [space | media | caption]: media stays centred, caption sits to its
-     right, vertically centred on the media. */
-  .play { --play-thumb: 150px; min-height: 0; display: block; padding: 40px 16px 80px; }
-  .play-grid { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
-  .play-item {
-    width: 100%;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: center;
-    column-gap: var(--space-16);
-  }
-  .play-frame { grid-column: 2; width: auto; height: auto; display: block; }
-  .play-cap { grid-column: 3; justify-self: start; text-align: left; }
-  .is-wide  { width: calc(var(--play-thumb) * 1.1); }
-  .is-small { width: calc(var(--play-thumb) * 0.85); }
+  /* Two columns: big tiles take a full row, small ones pair up */
+  .play-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: dense; row-gap: var(--space-40); }
+  .play-item.at-top,
+  .play-item.at-bottom { align-self: start; }
+  .is-plate .play-media { padding: var(--space-16); }
 }
 
 @media (prefers-reduced-motion: reduce) {

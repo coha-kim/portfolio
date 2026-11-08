@@ -34,7 +34,7 @@ Rules:
 1. **Ultralight minimum is 16px** (`--ultralight-min`). Anything smaller is Supply Sans 400 or Geist (e.g. ©, empty-image labels).
 2. Title face is always uppercase and short (≤ ~5 words). Geist is never uppercase.
 3. Load only Supply Sans 200 + 400 and Geist 400 + 500.
-4. Reading text is left-aligned, max ~70 characters per line. Captions are centred only on Play.
+4. Reading text is left-aligned, max ~70 characters per line. Captions are left-aligned everywhere.
 5. Supply Sans is proportional, so Regular is ~6% wider than Ultralight. Right-align years in the nav so the hover weight change doesn't push them; reserve the Regular width if titles twitch.
 
 ### Fonts
@@ -122,21 +122,23 @@ Order: hero (21:9) → title (display) → [lede cols 1–6 | details cols 8–1
 - End: right-aligned `NEXT PROJECT` label over a `TETHER →` link (next-project style).
 - Copy fixes from the old page: "how they ware" → "are", "participants references" → "referred", "guided question" → "questions", "they received" → "receive".
 
-### 6.4 Play (`pages/play.html`, currently missing)
-- Content area: items centred both ways in the first viewport.
-- Small thumbnails: long side `--play-thumb` (≈132px) at each item's own aspect ratio, in a centred `flex-wrap` row (40px column gap, 72px row gap). Items are bottom-aligned so every caption sits **4px** under its image and captions line up across a row.
-- Caption: Geist 13, centred.
+### 6.4 Play (`pages/play.html`)
+- Top: "Welcome to playground. More to come." in statement style, cols 7–12, then a section gap. No categories or filters.
+- Grid: 4 columns of square tiles (`--color-plate` behind), staggered in bands like a shop catalogue. Each band is one row: a big tile spans 2 columns; small tiles pin to the top or bottom of the band, so the gaps shift from band to band.
+- Media fills its tile (`object-fit: cover`). Diagrams (`.is-plate`) keep their whole frame, contained on the plate with padding.
+- Caption: Geist 13, left-aligned, 8px under the tile.
 - Mix of video and images. Video: `muted loop playsinline preload="none"` + poster frame; it plays only while hovered or focused.
 - Hover/focus one item: it plays, and every other item gets `filter: blur(var(--play-blur))` + opacity 0.5. Clear the blur only when the pointer leaves the whole gallery, so crossing gaps doesn't flicker.
 - Touch: no hover, so play the item nearest the middle of the screen (IntersectionObserver), tap to toggle, no blur.
-- Phone (< 760px): one column down the centre of the screen; each caption sits to the right of its media, vertically centred on it. Scroll to browse.
+- Phone (< 760px): 2 columns. Big tiles take a full row; small ones pair up.
 - Reduced motion: posters only.
 - Ship MP4 (H.264) at ~960px wide. The .mov files in `assets/videos/` won't play reliably in Chrome/Firefox.
-- Items: Water ripple (play-td-interactive-ripples), AI image gen (play-ai-snake.png), Fluid sim, Point cloud, [caption] (play-2.webp), Reactive ocean, Audio-reactive, Abstract study.
+- Items: Fluid sim, Water ripple, AI image gen, Point cloud, Abstract study, Reactive ocean, Audio-reactive. (The flowchart, play-2.webp / flow.webp, was taken off on 2026-11-09; the file is kept.)
 
 ### 6.5 About (`pages/about.html`)
-- First viewport: bio (cols 1–6, bottom-aligned, Geist 18) | portrait (cols 8–12, 2:3, upright: the current `about-portrait.webp` is stored rotated 90°).
-- Then the workspace photo (cols 1–7, 4:3) + caption "This is where everything is made."
+- First viewport: bio (cols 1–5, bottom-aligned, Geist 18) | portrait (cols 8–12, 2:3, upright: the current `about-portrait.webp` is stored rotated 90°).
+- Above the bio, 4px gap: a practice label in Supply Sans 22 Ultralight, uppercase, in brackets: [CREATIVE CODING] → [PHYSICAL-DIGITAL EXPERIENCE] → [PLAYFUL TECH] → [USER RESEARCH] (`js/about-roll.js`). ASCII scramble, after daas.graphics: each change flickers through random ASCII glyphs (one swap per 40ms frame), then the word resolves letter by letter, mostly left to right; it holds 2.4s. The bracket window eases to the new width and clips the glyphs. Pauses on hover and in a hidden tab; reduced motion stays on the first word. Screen readers get the list as one visually-hidden sentence.
+- Then, 168px down, "Outside of design": five hobby photos in one row (cols 1–7, 4px apart; four at 3:4, the last a little wider, `about-hobby-1…5.webp`), then the note (cols 1–5, Geist 18), 24px under it. This replaces the workspace photo and "This is where everything is made."
 - **Removed for now:** practice, location, degree, recognition, resume.
 
 ### 6.6 Phone

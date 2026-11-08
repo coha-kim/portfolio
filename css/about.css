@@ -12,6 +12,32 @@
   gap: 20px;
 }
 
+/* Practice label above the bio (js/about-roll.js): each word scrambles
+   through ASCII glyphs, then resolves. The window eases to the new word's
+   width and clips the glyphs, so the closing bracket moves once, smoothly. */
+.about-roll {
+  position: relative;
+  margin: 0 0 calc(var(--space-4) - 20px); /* 4px above the bio, not the 20px gap */
+  font-family: var(--font-title);
+  font-weight: var(--fw-ultralight);
+  font-size: var(--t-nav-size);
+  line-height: var(--t-nav-lh);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.about-roll__win {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  transition: width 300ms cubic-bezier(.6, 0, .2, 1);
+}
+.about-roll__word { white-space: pre; }
+.about-roll__probe { position: absolute; visibility: hidden; white-space: pre; }
+
+@media (prefers-reduced-motion: reduce) {
+  .about-roll__win { transition: none; }
+}
+
 .about-portrait {
   margin: 0;
   align-self: start;
@@ -22,15 +48,33 @@
 
 .about-portrait img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; }
 
-.about-work {
+/* Outside of design: a strip of five photos, then the note under it */
+.about-hands {
   padding-top: var(--space-168);
-  row-gap: var(--space-16);
-  align-items: end;
+  row-gap: var(--space-24);
 }
-.about-work__cap { color: var(--color-ink); }
+
+.about-hands__strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 115fr) 141fr; /* the last photo is wider */
+  column-gap: var(--space-4);
+}
+.about-hands__strip img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.about-hands__strip li:last-child img { height: 100%; aspect-ratio: auto; }
+
+.about-hands__text h2 { font-weight: var(--fw-regular); }
 
 @media (max-width: 760px) {
   .about-hero { min-height: 0; row-gap: var(--space-40); }
   .about-portrait { order: -1; }
-  .about-work { padding-top: 80px; }
+  .about-hands { padding-top: 80px; }
 }
