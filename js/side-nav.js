@@ -25,7 +25,7 @@
   var PROJECTS = [
     { id: 'sod',    title: 'Shape of Days', year: '2026', areas: 'UX research, creative coding',
       cover: 'assets/images/sod-cs-image1.webp', href: 'pages/new-sod.html' },
-    { id: 'tether', title: 'Tether',        year: '2026', areas: '[Areas]',
+    { id: 'tether', title: 'Tether',        year: '2026', areas: 'Installation design, physical computing',
       cover: 'assets/tether/tether-hero.webp', coverVideo: 'assets/tether/tether-hero.mp4',
       award: { src: 'assets/images/best-gold.png', alt: 'Best Design Awards, Gold' },
       href: 'pages/tether.html' },

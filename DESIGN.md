@@ -99,7 +99,7 @@ Project data:
 | id | title | year | areas | cover | page |
 |---|---|---|---|---|---|
 | sod | Shape of Days | 2026 (old page said 2025, confirm) | UX research, creative coding | assets/images/sod-cs-image1.webp | pages/new-sod.html |
-| tether | Tether | 2026 | [TBD] | [TBD] | not built yet, no link |
+| tether | Tether | 2026 | Installation design, physical computing | assets/tether/tether-hero.webp (+ tether-hero.mp4) | pages/tether.html |
 | akea | Akea Haus | 2026 | Brand strategy, UX research, app design | assets/images/lp-thumb-akea.webp | pages/new-akea-haus.html |
 
 ### 6.2 Landing (`index.html`): slingshot
@@ -120,6 +120,8 @@ Order: hero (21:9) → title (display) → [lede cols 1–6 | details cols 8–1
 - Research question: label + statement, both in `--color-accent`.
 - Design approach: 3 columns (stacked on phone) of number label, Geist 500 heading and body.
 - End: right-aligned `NEXT PROJECT` label over a `TETHER →` link (next-project style).
+- Details may add Tools and Award (Tether: 3×2). The award links out to its Best Awards entry, underlined, `--color-accent` on hover.
+- Video in a figure (`<video data-inview … preload="none">` + poster, `js/case-video.js`): plays muted and looping only while 40% on screen, pauses when scrolled away; reduced motion shows controls instead. Screen recordings go on a plate like screenshots.
 - Copy fixes from the old page: "how they ware" → "are", "participants references" → "referred", "guided question" → "questions", "they received" → "receive".
 
 ### 6.4 Play (`pages/play.html`)
