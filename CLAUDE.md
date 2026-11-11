@@ -16,6 +16,6 @@ Static site (plain HTML/CSS/JS, GitHub Pages). Owner: Seoha Kim.
 - Keep keyboard access and `prefers-reduced-motion` handling for anything interactive (slingshot, Play hover, hobby reveal).
 
 ## Workflow
-- CSS/JS links carry a version (`?v=20261104.4`, including the `@import`s in `css/style.css`). After changing any CSS or JS file, bump the version in every HTML page and in style.css so browsers don't keep the old file.
+- CSS/JS links carry a version (`?v=20261111.7`, including the `@import`s in `css/style.css`). After changing any CSS or JS file, bump the version in every HTML page and in style.css so browsers don't keep the old file.
 - Build in the order in DESIGN.md §7, side nav first.
 - Ask before deleting existing pages or assets.

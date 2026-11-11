@@ -23,14 +23,25 @@
   ];
 
   var PROJECTS = [
-    { id: 'sod',    title: 'Shape of Days', year: '2026', areas: 'UX research, creative coding',
+    { id: 'sod',    title: 'Shape of Days', year: '2025', areas: 'UX research, creative coding',
       cover: 'assets/images/sod-cs-image1.webp', href: 'pages/new-sod.html' },
     { id: 'tether', title: 'Tether',        year: '2026', areas: 'Installation design, physical computing',
-      cover: 'assets/tether/tether-hero.webp', coverVideo: 'assets/tether/tether-hero.mp4',
+      cover: 'assets/tether/tether-title.webp',
       award: { src: 'assets/images/best-gold.png', alt: 'Best Design Awards, Gold' },
       href: 'pages/tether.html' },
-    { id: 'akea',   title: 'Akea Haus',     year: '2026', areas: 'Brand strategy, UX research, app design',
+    { id: 'akea',   title: 'Akea Haus',     year: '2025', areas: 'Brand strategy, UX research, app design',
       cover: 'assets/images/lp-thumb-akea.webp', href: 'pages/new-akea-haus.html' }
+  ];
+
+  // Smaller work, folded under "Other" in the work list (opens on click,
+  // and is already open when you're on one of these pages).
+  var OTHER = [
+    { id: 'bakatchae', title: 'Bakkatchae', year: '2026', areas: 'Branding, café identity',
+      cover: 'assets/bakkatchae/bakkatchae-logo.webp', href: 'pages/bakkatchae.html' },
+    { id: 'sequence',  title: 'Sequence',  year: '2026', areas: 'UX design, UI design',
+      cover: 'assets/sequence/sequence-identity.webp',
+      award: { src: 'assets/images/best-silver.png', alt: 'Best Design Awards, Silver' },
+      href: 'pages/sequence.html' }
   ];
 
   var nav = document.getElementById('side-nav');
@@ -80,7 +91,7 @@
       '</a></li>';
   }).join('');
 
-  var rows = PROJECTS.map(function (p) {
+  function rowHtml(p) {
     var inner = '<span class="t-title t-nav side-nav__title">' + esc(p.title) +
                   (p.award ? '<img class="side-nav__award" src="' + url(p.award.src) + '" alt="' + esc(p.award.alt) + '" width="24" height="24">' : '') +
                 '</span>' +
@@ -89,7 +100,16 @@
     return '<li>' + (p.href
       ? '<a class="side-nav__row" data-project="' + p.id + '" href="' + url(p.href) + '"' + cur + '>' + inner + '</a>'
       : '<span class="side-nav__row" data-project="' + p.id + '">' + inner + '</span>') + '</li>';
-  }).join('');
+  }
+
+  var otherOpen = OTHER.some(function (p) { return p.id === current; });
+  var rows = PROJECTS.map(rowHtml).join('') +
+    '<li class="side-nav__other' + (otherOpen ? ' is-open' : '') + '">' +
+      '<button type="button" class="side-nav__other-toggle t-title t-nav" aria-expanded="' + otherOpen + '" aria-controls="side-nav-other">Other</button>' +
+      '<ul class="side-nav__other-list" id="side-nav-other"' + (otherOpen ? '' : ' hidden') + '>' +
+        OTHER.map(rowHtml).join('') +
+      '</ul>' +
+    '</li>';
 
   nav.setAttribute('aria-label', 'Site');
   nav.innerHTML =
@@ -118,7 +138,7 @@
   var list = nav.querySelector('.side-nav__work');
   var rowEls = nav.querySelectorAll('.side-nav__row');
   var byId = {};
-  PROJECTS.forEach(function (p) {
+  PROJECTS.concat(OTHER).forEach(function (p) {
     byId[p.id] = p;
     if (p.cover) new Image().src = url(p.cover); // warm the cache so swaps don't flash
   });
@@ -154,6 +174,17 @@
     if (!list.contains(e.relatedTarget)) reset();
   });
   reset();
+
+  // ── "Other": click to expand / collapse ───────────────────────────────
+  var otherItem = nav.querySelector('.side-nav__other');
+  var otherBtn = nav.querySelector('.side-nav__other-toggle');
+  var otherList = nav.querySelector('.side-nav__other-list');
+  otherBtn.addEventListener('click', function () {
+    var open = otherBtn.getAttribute('aria-expanded') !== 'true';
+    otherBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    otherList.hidden = !open;
+    otherItem.classList.toggle('is-open', open);
+  });
 
   // ── Phone: top bar + menu overlay (DESIGN.md §4, §6.6) ────────────────
   var bar = document.createElement('header');

@@ -5,6 +5,16 @@
 
 .play-head { margin-bottom: var(--section-gap); }
 
+/* Play text is set in the title face (Supply Sans, uppercase) */
+.play-title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-weight: var(--fw-ultralight);
+  font-size: var(--t-statement-size);
+  line-height: var(--t-statement-lh);
+  text-transform: uppercase;
+}
+
 .play-grid {
   list-style: none;
   margin: 0;
@@ -38,14 +48,24 @@
 .play-media video,
 .play-media img { width: 100%; height: 100%; object-fit: cover; }
 
+/* Natural: the tile takes the media's own ratio, so nothing is cropped
+   (tall images, comic pages, screen recordings) */
+.is-natural .play-media { aspect-ratio: auto; }
+.is-natural .play-media video,
+.is-natural .play-media img { height: auto; }
+
 /* Diagrams keep their whole frame, on the plate */
 .is-plate .play-media { padding: var(--space-24); }
 .is-plate .play-media img { object-fit: contain; }
 
 .play-cap {
   margin: 0;
-  font-size: var(--t-play-caption-size);
-  line-height: var(--t-small-lh);
+  font-family: var(--font-title);
+  font-weight: var(--fw-ultralight);       /* 16px: the Ultralight minimum */
+  font-size: var(--t-label-size);
+  line-height: var(--t-label-lh);
+  letter-spacing: var(--t-label-track);
+  text-transform: uppercase;
 }
 
 /* One item in focus: the rest blur */

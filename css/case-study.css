@@ -134,5 +134,29 @@
 .cs-section--follow { padding-top: var(--space-64); }
 @media (max-width: 760px) { .cs-section--follow { padding-top: var(--space-40); } }
 
+/* ── Branding pages (e.g. Bakkatchae) ─────────────────────────────────
+   Brand plate: a plate in the project's own colour, for print that reads
+   better on its own dark ground. The page sets --plate-brand.            */
+.m--brand .m-box { background: var(--plate-brand, var(--color-plate)); }
+.cs--bakkatchae { --plate-brand: var(--color-bakkatchae-ink); }
+
+/* Branding header: no hero. Title, lede and details on the left; the logo
+   (3:4, its own ratio) in cols 10–12 on the right, top-aligned.
+   Phone: logo first, half width. */
+.bk-logo { grid-column: 10 / 13; grid-row: 1 / span 3; align-self: start; }
+.bk-logo .m-box { aspect-ratio: 3 / 4; }
+@media (max-width: 760px) {
+  .cs--bakkatchae .bk-logo { grid-column: 1 / 3 !important; grid-row: auto; }
+}
+
+/* Small 2×2: four supporting photos at 3:4 in cols 1–6 under one caption
+   (stays 2×2 on phone). */
+.m--grid4 { grid-column: span 6; }
+.m-grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gutter); }
+.m--grid4 .m-box { aspect-ratio: 3 / 4; }
+
+/* Film: a Full row at 16:9 so a walkthrough video is never cropped */
+.m--169 .m-box { aspect-ratio: 16 / 9; }
+
 /* Empty slot while content is still to come */
 .m-empty { position: absolute; inset: 0; display: grid; place-items: center; font-size: var(--t-small-size); color: var(--color-secondary); text-transform: uppercase; letter-spacing: 0.02em; }

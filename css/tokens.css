@@ -50,6 +50,9 @@
   --color-empty:     #E2E2DF;  /* empty image slots               */
   --color-accent:    #112490;  /* research question, slingshot hit, link hover */
 
+  /* Project colours: only on that project's page, as plate grounds */
+  --color-bakkatchae-ink:  #221711;  /* Bakkatchae: behind printed pieces */
+
   /* ── Lines (only two kinds exist) ──────────────────────────────────── */
   --line-hairline: 1px solid var(--color-ink);            /* ONLY under "WORK" in the side nav */
   --line-leader: repeating-linear-gradient(90deg, var(--color-ink) 0 4px, transparent 4px 8px);

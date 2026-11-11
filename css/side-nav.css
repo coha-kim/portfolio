@@ -204,6 +204,25 @@
 /* Unbuilt projects: listed, not linked. */
 .side-nav__row:not(a) { cursor: default; }
 
+/* "Other": a toggle row that expands an indented sub-list */
+.side-nav__other-toggle {
+  display: block;
+  width: 100%;
+  min-height: var(--t-nav-lh);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.side-nav__other-toggle:hover,
+.side-nav__other-toggle:focus-visible,
+.side-nav__other.is-open .side-nav__other-toggle { font-weight: var(--fw-regular); }
+
+.side-nav .side-nav__other-list { padding-left: var(--space-40); }
+.side-nav__other-list[hidden] { display: none; }
+
 .side-nav__copy {
   margin: var(--space-24) 0 0;
   font-size: var(--t-small-size);

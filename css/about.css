@@ -17,9 +17,9 @@
    width and clips the glyphs, so the closing bracket moves once, smoothly. */
 .about-roll {
   position: relative;
-  margin: 0 0 calc(var(--space-4) - 20px); /* 4px above the bio, not the 20px gap */
+  margin: 0 0 calc(var(--space-40) - 20px); /* 40px above the bio, not the 20px gap */
   font-family: var(--font-title);
-  font-weight: var(--fw-ultralight);
+  font-weight: var(--fw-regular);   /* the heaviest Supply Sans cut we load */
   font-size: var(--t-nav-size);
   line-height: var(--t-nav-lh);
   text-transform: uppercase;

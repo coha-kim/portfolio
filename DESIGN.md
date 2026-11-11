@@ -72,9 +72,10 @@ Only four sizes, always in fixed ratios. Every image row uses one of five patter
 
 - Photos fill their box (`object-fit: cover`).
 - Diagrams, screenshots and code go on a plate: add `.m--plate` (grey box, 32px padding, 16 on phone, image contained). They then sit in the same frames as photos.
-- Every figure has a caption: `Fig. n — Short title`, numbered per page.
+- Every figure has a short caption, just the name ("Menu", "Rock"). No "Fig. n —" numbering.
 - Rows: 64px after section text, 40px between consecutive rows.
 - Don't use any other column span, natural-ratio image or inline size. If an image doesn't fit a pattern, put it on a plate in the nearest one.
+- Two extras for branding pages: **Small 2×2** (`.m--grid4` > `.m-grid4`, cols 1–6, four 3:4 photos, one caption, stays 2×2 on phone) for supporting shots like an interior; and **brand plates** (`.m--plate.m--brand`), a plate in the project's own colour (`--color-<project>-…` in tokens.css, set as `--plate-brand` by the page's `.cs--<project>` class).
 
 ## 6. Components & pages
 
@@ -124,22 +125,30 @@ Order: hero (21:9) → title (display) → [lede cols 1–6 | details cols 8–1
 - Video in a figure (`<video data-inview … preload="none">` + poster, `js/case-video.js`): plays muted and looping only while 40% on screen, pauses when scrolled away; reduced motion shows controls instead. Screen recordings go on a plate like screenshots.
 - Copy fixes from the old page: "how they ware" → "are", "participants references" → "referred", "guided question" → "questions", "they received" → "receive".
 
+### 6.3b Branding page (`pages/bakkatchae.html`)
+Not a case study, so no hero. Header: title, lede and the details grid (Areas, Type, Year, Instagram link) on the left, cols 1–8; the logo (3:4) in cols 10–12, top-aligned (on phone it comes first, half width). Then image rows only: no numbered sections. Rows: Half + Half (menu, floor guide, on brand plates) → Third × 3 (sticker, entrance, poster) → Small 2×2 (interior). Ends with Next project → Shape of Days. Listed under "Other" in the side nav.
+
+### 6.3c Sequence (`pages/sequence.html`)
+Short case study, listed under "Other" with the Silver pin. Hero is the header image (Silver badge baked in), then the header (Areas, Year, Type, Award ↗ to its Best Awards entry), then the walkthrough film as a Full row at 16:9 (`.m--169`, never cropped; has sound, so it carries controls). Sections: 01 Problem, 02 Idea, 03 Two screens, 04 Behind the scenes. Ends with Next project → Shape of Days.
+
 ### 6.4 Play (`pages/play.html`)
 - Top: "Welcome to playground. More to come." in statement style, cols 7–12, then a section gap. No categories or filters.
 - Grid: 4 columns of square tiles (`--color-plate` behind), staggered in bands like a shop catalogue. Each band is one row: a big tile spans 2 columns; small tiles pin to the top or bottom of the band, so the gaps shift from band to band.
-- Media fills its tile (`object-fit: cover`). Diagrams (`.is-plate`) keep their whole frame, contained on the plate with padding.
+- Media fills its tile (`object-fit: cover`). Diagrams (`.is-plate`) keep their whole frame, contained on the plate with padding. `.is-natural` tiles take the media's own ratio instead of square, so nothing is cropped (tall images, comic pages, screen recordings); give the img/video its width and height.
 - Caption: Geist 13, left-aligned, 8px under the tile.
 - Mix of video and images. Video: `muted loop playsinline preload="none"` + poster frame; it plays only while hovered or focused.
-- Hover/focus one item: it plays, and every other item gets `filter: blur(var(--play-blur))` + opacity 0.5. Clear the blur only when the pointer leaves the whole gallery, so crossing gaps doesn't flicker.
+- Hover/focus one item: it plays, muted. No blur on hover.
+- Click one item: it comes into focus and every other item gets `filter: blur(var(--play-blur))` + opacity 0.5 (a clip with sound also turns its sound on). Click it again, click outside the gallery or press Escape to clear. Clicking another item moves the focus.
 - Touch: no hover, so play the item nearest the middle of the screen (IntersectionObserver), tap to toggle, no blur.
 - Phone (< 760px): 2 columns. Big tiles take a full row; small ones pair up.
 - Reduced motion: posters only.
 - Ship MP4 (H.264) at ~960px wide. The .mov files in `assets/videos/` won't play reliably in Chrome/Firefox.
-- Items: Fluid sim, Water ripple, AI image gen, Point cloud, Abstract study, Reactive ocean, Audio-reactive. (The flowchart, play-2.webp / flow.webp, was taken off on 2026-11-09; the file is kept.)
+- Items, in this order (bands of 4 columns): Fluid sim, Water ripple, AI image gen | BirdCare billboard, Point cloud, Abstract study | Reactive ocean, Photography | Digital scrapbook, Audio-reactive | Needle felting, ASCII hand tracking | Simply app, Graphic novel. Keep each band at 4 columns (big = 2) when adding items, and mix images in with videos rather than appending.
+- Sound: Fluid sim, Point cloud and ASCII hand tracking have sound (`data-sound`). They play muted on hover; the click that focuses them turns sound on, the click that clears it mutes. The other clips have no audio track.
 
 ### 6.5 About (`pages/about.html`)
 - First viewport: bio (cols 1–5, bottom-aligned, Geist 18) | portrait (cols 8–12, 2:3, upright: the current `about-portrait.webp` is stored rotated 90°).
-- Above the bio, 4px gap: a practice label in Supply Sans 22 Ultralight, uppercase, in brackets: [CREATIVE CODING] → [PHYSICAL-DIGITAL EXPERIENCE] → [PLAYFUL TECH] → [USER RESEARCH] (`js/about-roll.js`). ASCII scramble, after daas.graphics: each change flickers through random ASCII glyphs (one swap per 40ms frame), then the word resolves letter by letter, mostly left to right; it holds 2.4s. The bracket window eases to the new width and clips the glyphs. Pauses on hover and in a hidden tab; reduced motion stays on the first word. Screen readers get the list as one visually-hidden sentence.
+- Above the bio, 40px gap: a practice label in Supply Sans 22 Regular, uppercase, in brackets: [CREATIVE CODING] → [PHYSICAL-DIGITAL EXPERIENCE] → [PLAYFUL TECH] → [USER RESEARCH] (`js/about-roll.js`). ASCII scramble, after daas.graphics: each change flickers through random ASCII glyphs (one swap per 40ms frame), then the word resolves letter by letter, mostly left to right; it holds 2.4s. The bracket window eases to the new width and clips the glyphs. Pauses on hover and in a hidden tab; reduced motion stays on the first word. Screen readers get the list as one visually-hidden sentence.
 - Then, 168px down, "Outside of design": five hobby photos in one row (cols 1–7, 4px apart; four at 3:4, the last a little wider, `about-hobby-1…5.webp`), then the note (cols 1–5, Geist 18), 24px under it. This replaces the workspace photo and "This is where everything is made."
 - **Removed for now:** practice, location, degree, recognition, resume.
 

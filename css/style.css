@@ -1,6 +1,6 @@
 /* 2026 system: shared by every page. Page styles are linked per page
    (landing.css, case-study.css, play.css, about.css). */
-@import url('tokens.css?v=20261111.1');
-@import url('fonts.css?v=20261111.1');
-@import url('base.css?v=20261111.1');
-@import url('side-nav.css?v=20261111.1');
+@import url('tokens.css?v=20261111.7');
+@import url('fonts.css?v=20261111.7');
+@import url('base.css?v=20261111.7');
+@import url('side-nav.css?v=20261111.7');
