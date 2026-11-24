@@ -9,9 +9,9 @@
      Wide + text     .m--wide    8 col   3:2   + .cs-aside 4 col
      Third × 3       .m--third   4 col   4:5   (.m--square for 1:1 screens)
 
-   Photos fill their box (cover). Diagrams and screenshots go on a plate
-   (.m--plate): grey box, 32px padding, image contained, so every diagram
-   sits in the same-sized frame as a photo would. */
+   Images are never cropped and have no background: each shows whole,
+   left-aligned, within its slot (see Media rows). Only the hero, films and
+   branding plates keep a fixed frame. */
 
 .cs { display: flex; flex-direction: column; }
 
@@ -57,41 +57,70 @@
 .cs-row { padding-top: var(--space-64); row-gap: var(--space-40); align-items: start; }
 .cs-row + .cs-row { padding-top: var(--space-40); }
 
-.m { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); }
-.m--full  { grid-column: 1 / 13; }
-.m--wide  { grid-column: span 8; }
-.m--half  { grid-column: span 6; }
-.m--third { grid-column: span 4; }
+/* Images are never cropped and never sit on a background. Each one shows
+   whole, as large as its slot allows: the slot's columns set the width and
+   the pattern's ratio caps the height, so an image narrower than the
+   pattern sits left-aligned with space on its right. (100cqi = the
+   figure's width.) */
+.m { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); container-type: inline-size; --m-ratio: 1.3333; }
+.m--full  { grid-column: 1 / 13; --m-ratio: 2.3333; }
+.m--wide  { grid-column: span 8;  --m-ratio: 1.5; }
+.m--half  { grid-column: span 6;  --m-ratio: 1.3333; }
+.m--third { grid-column: span 4;  --m-ratio: 0.8; }
+.m--square { --m-ratio: 1; }
 
-.m-box { position: relative; overflow: hidden; background: var(--color-plate); }
-.m--full  .m-box { aspect-ratio: 21 / 9; }
-.m--wide  .m-box { aspect-ratio: 3 / 2; }
-.m--half  .m-box { aspect-ratio: 4 / 3; }
-.m--third .m-box { aspect-ratio: 4 / 5; }
-.m--square .m-box { aspect-ratio: 1 / 1; }
-
+.m-box { position: relative; width: 100%; }
 .m-box > img,
 .m-box > video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100cqi / var(--m-ratio));
+}
+
+/* Framed media: these keep a fixed frame and fill it (hero, film, branding
+   plates, logo, small 2×2). */
+.cs-hero .m-box,
+.m--169 .m-box,
+.m--brand .m-box,
+.bk-logo .m-box,
+.m--grid4 .m-box { overflow: hidden; background: var(--color-plate); }
+.cs-hero .m-box { aspect-ratio: 21 / 9; }
+.cs-hero .m-box > img,
+.cs-hero .m-box > video,
+.m--169 .m-box > img,
+.m--169 .m-box > video,
+.bk-logo .m-box > img,
+.m--grid4 .m-box > img,
+.m--brand .m-box > img {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
+  max-height: none;
   object-fit: cover;
 }
-.m--plate .m-box > img,
-.m--plate .m-box > video {
+.m--brand .m-box { aspect-ratio: 4 / 3; }
+.m--brand .m-box > img {
   top: 32px; left: 32px;
   width: calc(100% - 64px);
   height: calc(100% - 64px);
   object-fit: contain;
 }
 
+/* Tether: the hero video is shown whole, on its own grey */
+.cs--tether .cs-hero .m-box { background: var(--color-tether-hero); }
+.cs--tether .cs-hero .m-box > .cs-hero-video { object-fit: contain; }
+
 .m figcaption { margin: 0; font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--color-secondary); }
 
 .cs-hero { padding-top: 0; }
 
-/* Wide + text: the text sits in the last 4 columns, bottom-aligned */
-.cs-aside { grid-column: span 4; align-self: end; display: flex; flex-direction: column; gap: var(--space-8); }
+/* Wide + text: the text sits in the last 4 columns, its last line level
+   with the bottom of the image (lifted by the caption's line + gap). */
+.cs-aside { grid-column: span 4; align-self: end; margin-bottom: calc(var(--t-caption-lh) + var(--space-8)); display: flex; flex-direction: column; gap: var(--space-8); }
 
 /* ── Next project ───────────────────────────────────────────────────── */
 .cs-next {
@@ -122,10 +151,9 @@
   .cs-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cs-row { padding-top: var(--space-40); row-gap: var(--space-24); }
   .cs-row + .cs-row { padding-top: var(--space-24); }
-  .m--full .m-box { aspect-ratio: 16 / 9; }
+  .m--full { --m-ratio: 1.7778; }
   .cs-hero .m-box { aspect-ratio: 4 / 3; }
-  .m--plate .m-box > img,
-  .m--plate .m-box > video { top: 16px; left: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
+  .m--brand .m-box > img { top: 16px; left: 16px; width: calc(100% - 32px); height: calc(100% - 32px); }
   .cs-next { margin-top: 120px; }
   .cs-next__title { font-size: 34px; line-height: 38px; }
 }
@@ -137,7 +165,7 @@
 /* ── Branding pages (e.g. Bakkatchae) ─────────────────────────────────
    Brand plate: a plate in the project's own colour, for print that reads
    better on its own dark ground. The page sets --plate-brand.            */
-.m--brand .m-box { background: var(--plate-brand, var(--color-plate)); }
+.cs .m--brand .m-box { background: var(--plate-brand, var(--color-plate)); }
 .cs--bakkatchae { --plate-brand: var(--color-bakkatchae-ink); }
 
 /* Branding header: no hero. Title, lede and details on the left; the logo

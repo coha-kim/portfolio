@@ -60,7 +60,7 @@ Do **not** add lines under titles, above sections, between rows, in meta details
 
 ## 5. Images
 
-Only four sizes, always in fixed ratios. Every image row uses one of five patterns (markup and classes in `css/case-study.css`):
+Only four slot sizes. Every image row uses one of five patterns (markup and classes in `css/case-study.css`). The ratio is the slot's height limit, not a crop:
 
 | Pattern | Classes | Ratios |
 |---|---|---|
@@ -70,11 +70,13 @@ Only four sizes, always in fixed ratios. Every image row uses one of five patter
 | Wide + text | `.m--wide` + `.cs-aside` (8 + 4) | 3:2, text bottom-aligned |
 | Third × 3 | `.m--third` ×3 (4 + 4 + 4) | 4:5, or 1:1 with `.m--square` for app screens |
 
-- Photos fill their box (`object-fit: cover`).
-- Diagrams, screenshots and code go on a plate: add `.m--plate` (grey box, 32px padding, 16 on phone, image contained). They then sit in the same frames as photos.
+- **Never crop, never add a background.** Each image or video shows whole, at its own ratio, as large as its slot allows: the columns set the width, the pattern's ratio caps the height. If it's narrower than that, it sits left-aligned and the space is left on its right. No grey plates behind diagrams or screenshots (`.m--plate` no longer does anything).
+- Exceptions that keep a fixed frame: the hero (21:9), the 16:9 film, and the branding page's brand plates, logo and small 2×2.
+- Tether's hero video is shown whole in the 21:9 frame, on `--color-tether-hero` (the video's own grey).
+- Wide + text: the text's last line sits level with the bottom of the image, not the caption.
 - Every figure has a short caption, just the name ("Menu", "Rock"). No "Fig. n —" numbering.
 - Rows: 64px after section text, 40px between consecutive rows.
-- Don't use any other column span, natural-ratio image or inline size. If an image doesn't fit a pattern, put it on a plate in the nearest one.
+- Don't use any other column span or inline size. If an image doesn't suit a pattern, use the nearest one; it will show whole inside it.
 - Two extras for branding pages: **Small 2×2** (`.m--grid4` > `.m-grid4`, cols 1–6, four 3:4 photos, one caption, stays 2×2 on phone) for supporting shots like an interior; and **brand plates** (`.m--plate.m--brand`), a plate in the project's own colour (`--color-<project>-…` in tokens.css, set as `--plate-brand` by the page's `.cs--<project>` class).
 
 ## 6. Components & pages

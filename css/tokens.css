@@ -52,6 +52,7 @@
 
   /* Project colours: only on that project's page, as plate grounds */
   --color-bakkatchae-ink:  #221711;  /* Bakkatchae: behind printed pieces */
+  --color-tether-hero:     #A8A8A8;  /* Tether: the hero video's own grey  */
 
   /* ── Lines (only two kinds exist) ──────────────────────────────────── */
   --line-hairline: 1px solid var(--color-ink);            /* ONLY under "WORK" in the side nav */

@@ -8,16 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20261111.7">
-  <link rel="stylesheet" href="../css/case-study.css?v=20261111.7">
+  <link rel="stylesheet" href="../css/style.css?v=20261124.3">
+  <link rel="stylesheet" href="../css/case-study.css?v=20261124.3">
 </head>
 <body>
 
   <div class="site">
     <aside class="side-nav" id="side-nav" data-current="tether"></aside>
-    <script src="../js/side-nav.js?v=20261111.7"></script>
+    <script src="../js/side-nav.js?v=20261124.3"></script>
 
-    <main class="site-main page cs">
+    <main class="site-main page cs cs--tether">
 
       <!-- Hero: Full, video -->
       <div class="g cs-row cs-hero">
@@ -44,6 +44,7 @@
         <h2 class="t-label">01 — Idea</h2>
         <div class="cs-text">
           <p class="t-statement">Exploring the value of shared attention in the age of instant gratification.</p>
+          <p class="t-body is-single">Rain, without the discomfort that comes with it. Visitors stand inside a heavy downpour that never lands on them, and with few colours and sounds around them, they start to notice the sensory details they usually ignore.</p>
         </div>
       </section>
       <div class="g cs-row">
@@ -53,7 +54,20 @@
 
       <!-- 02 -->
       <section class="g cs-section">
-        <h2 class="t-label">02 — Interaction</h2>
+        <h2 class="t-label">02 — Exploration</h2>
+        <div class="cs-text">
+          <p class="t-statement">We started with projection, then moved the visuals into the background so touch and sound could lead.</p>
+          <p class="t-body is-single">Early proofs of concept in TouchDesigner tested hand-tracked water ripples and a bioluminescent glow. A wall projection only reads from one direction, so the visuals became ambient, shifting the visual dominance to the other senses.</p>
+        </div>
+      </section>
+      <div class="g cs-row">
+        <figure class="m m--half"><div class="m-box"><img src="../assets/tether/tether-poc-ripples.webp" alt="TouchDesigner network drawing water ripples that follow a hand seen on webcam" loading="lazy"></div><figcaption>Ripples</figcaption></figure>
+        <figure class="m m--half"><div class="m-box"><img src="../assets/tether/tether-poc-glow.webp" alt="TouchDesigner network rendering a glowing blue-green particle surface" loading="lazy"></div><figcaption>Glow</figcaption></figure>
+      </div>
+
+      <!-- 03 -->
+      <section class="g cs-section">
+        <h2 class="t-label">03 — Interaction</h2>
         <div class="cs-text">
           <p class="t-statement">Three natural materials, no instructions. Each touch changes the world on screen.</p>
           <div class="cs-cols-3">
@@ -72,23 +86,58 @@
         <figure class="m m--half"><div class="m-box"><img src="../assets/tether/tether-collaborate.webp" alt="Visitors laughing together around the plinths, beside a close-up of hands on the water tray" loading="lazy"></div><figcaption>Collaborate</figcaption></figure>
       </div>
 
-      <!-- 03 -->
+      <!-- 04 -->
       <section class="g cs-section">
-        <h2 class="t-label">03 — System</h2>
+        <h2 class="t-label">04 — Making</h2>
+        <div class="cs-text">
+          <p class="t-statement">Conductive copper tape turns natural materials into touch sensors.</p>
+          <p class="t-body is-single">Scallops already have ridges to follow, and scratching the rock&rsquo;s surface kept it rough to the touch. Thin vertical strips took longer than one wide band but looked more natural, and the overlaps added texture, though as part of the space it did not reflect our vision and had to pivot.</p>
+        </div>
+      </section>
+      <div class="g cs-row">
+        <figure class="m m--third"><div class="m-box"><img src="../assets/tether/tether-tape-cut.webp" alt="Trimming copper tape along the ridges of a scallop shell with a craft knife" loading="lazy"></div><figcaption>Taping</figcaption></figure>
+        <figure class="m m--third"><div class="m-box"><img src="../assets/tether/tether-tape-test.webp" alt="A small shell wrapped in overlapping copper strips held up to the camera" loading="lazy"></div><figcaption>Tape test</figcaption></figure>
+        <figure class="m m--third"><div class="m-box"><img src="../assets/tether/tether-rock-copper.webp" alt="A dark rock with a band of copper tape across its scratched surface" loading="lazy"></div><figcaption>Taped rock</figcaption></figure>
+      </div>
+
+      <!-- 05 -->
+      <section class="g cs-section">
+        <h2 class="t-label">05 — System</h2>
         <div class="cs-text">
           <p class="t-statement">TouchDesigner reads each touch and passes it to Unreal Engine over OSC.</p>
         </div>
       </section>
       <div class="g cs-row">
-        <figure class="m m--wide m--plate"><div class="m-box"><img src="../assets/tether/tether-system.webp" alt="System diagram: TouchDesigner detects water, rock and flower input and sends it over OSC to Unreal Engine for light, rain, flower growth and bloom, and out to a responsive soundscape and responsive LED light" loading="lazy"></div><figcaption>System</figcaption></figure>
+        <figure class="m m--wide"><div class="m-box"><img src="../assets/tether/tether-system.webp" alt="System diagram: TouchDesigner detects water, rock and flower input and sends it over OSC to Unreal Engine for light, rain, flower growth and bloom, and out to a responsive soundscape and responsive LED light" loading="lazy"></div><figcaption>System</figcaption></figure>
         <div class="cs-aside">
           <p class="t-body">Unreal Engine turns the signals into light, rain, growth and bloom. The same signals drive a soundscape (rain for water, bass for rock, generative botanica for flower) and LEDs under each material that pulse, then stay on as it&rsquo;s touched.</p>
         </div>
       </div>
 
-      <!-- 04 -->
+      <div class="g cs-row">
+        <figure class="m m--half"><div class="m-box"><img src="../assets/tether/tether-ue-blueprint.webp" alt="Unreal Engine Blueprint: an OSC float above 0.5 activates the rain particles and sets their intensity" loading="lazy"></div><figcaption>Blueprint</figcaption></figure>
+        <figure class="m m--half"><div class="m-box"><img src="../assets/tether/tether-midi-mapper.webp" alt="TouchDesigner MIDI Mapper linking a network RTP session to the IAC driver, with MIDI messages logging" loading="lazy"></div><figcaption>MIDI mapper</figcaption></figure>
+      </div>
+      <div class="g cs-row">
+        <figure class="m m--wide"><div class="m-box"><video data-inview src="../assets/tether/tether-screen-led.mp4" poster="../assets/tether/tether-screen-led.webp" muted loop playsinline preload="none" aria-label="Screen recording: TouchDesigner and Ableton side by side while a hand moves over the lit water tank"></video></div><figcaption>Hand tracking</figcaption></figure>
+        <div class="cs-aside">
+          <p class="t-body">Hand position over the water, tracked in TouchDesigner, sets where the LEDs glow; MIDI from Ableton sets when they light. Ableton only heard TouchDesigner once we switched to an RTP network-MIDI session.</p>
+        </div>
+      </div>
+      <div class="g cs-row">
+        <figure class="m m--wide"><div class="m-box"><video data-inview src="../assets/tether/tether-flower-rig.mp4" poster="../assets/tether/tether-flower-rig.webp" muted loop playsinline preload="none" aria-label="WLED test on a desk: a hand moves near the flower rig while a laptop runs TouchDesigner"></video></div><figcaption>WLED test</figcaption></figure>
+        <div class="cs-aside">
+          <p class="t-body">An early WLED test: hand tracking in TouchDesigner moves the lit LEDs to follow the hand&rsquo;s position.</p>
+        </div>
+      </div>
+
+      <!-- 06 -->
       <section class="g cs-section">
-        <h2 class="t-label">04 — Behind the scenes</h2>
+        <h2 class="t-label">06 — Testing</h2>
+        <div class="cs-text">
+          <p class="t-statement">In the small tank, LEDs that followed your hand were hard to notice, and brightness tied to speed just read as flicker.</p>
+          <p class="t-body is-single">So each light now pulses, then stays on while it&rsquo;s touched.</p>
+        </div>
       </section>
       <div class="g cs-row">
         <figure class="m m--half"><div class="m-box"><img src="../assets/tether/tether-process.webp" alt="Black-and-white collage of making Tether: wiring a microcontroller, building plinths, laying out the flower rig, testing in TouchDesigner and a video call critique" loading="lazy"></div><figcaption>Making</figcaption></figure>
@@ -103,11 +152,12 @@
         <figure class="m m--half"><div class="m-box"><video data-inview src="../assets/tether/tether-test-flower.mp4" poster="../assets/tether/tether-test-flower.webp" muted loop playsinline preload="none" aria-label="A tester touches the lily under the lamp and smiles"></video></div><figcaption>Lily under light</figcaption></figure>
       </div>
       <div class="g cs-row">
-        <figure class="m m--wide m--plate"><div class="m-box"><video data-inview src="../assets/videos/lumiere-soundscape-test.mp4" poster="../assets/tether/tether-bts-soundscape.webp" muted loop playsinline preload="none" aria-label="TouchDesigner network for the soundscape, with audio players switching as inputs arrive"></video></div><figcaption>Soundscape patch</figcaption></figure>
+        <figure class="m m--wide"><div class="m-box"><video data-inview src="../assets/videos/lumiere-soundscape-test.mp4" poster="../assets/tether/tether-bts-soundscape.webp" muted loop playsinline preload="none" aria-label="TouchDesigner network for the soundscape, with audio players switching as inputs arrive"></video></div><figcaption>Soundscape patch</figcaption></figure>
         <div class="cs-aside">
           <p class="t-body">The soundscape patch in TouchDesigner: one audio layer per material, triggered by touch.</p>
         </div>
       </div>
+
 
       <a class="cs-next" href="new-akea-haus.html">
         <span class="t-label t-muted">Next project</span>
@@ -122,6 +172,6 @@
       document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
     }
   </script>
-  <script src="../js/case-video.js?v=20261111.7" defer></script>
+  <script src="../js/case-video.js?v=20261124.3" defer></script>
 </body>
 </html>
