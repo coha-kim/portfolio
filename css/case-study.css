@@ -9,9 +9,9 @@
      Wide + text     .m--wide    8 col   3:2   + .cs-aside 4 col
      Third × 3       .m--third   4 col   4:5   (.m--square for 1:1 screens)
 
-   Images are never cropped and have no background: each shows whole,
-   left-aligned, within its slot (see Media rows). Only the hero, films and
-   branding plates keep a fixed frame. */
+   Images are never cropped and have no background: each shows whole within
+   its slot, and rows pack from the left (see Media rows). Only the hero,
+   films and branding plates keep a fixed frame. */
 
 .cs { display: flex; flex-direction: column; }
 
@@ -38,8 +38,8 @@
 
 /* ── Sections ───────────────────────────────────────────────────────── */
 .cs-section { padding-top: var(--section-gap); row-gap: var(--space-24); align-items: start; }
-.cs-section > .t-label { grid-column: 1 / 4; }
-.cs-text { grid-column: 4 / 13; display: flex; flex-direction: column; gap: var(--space-24); }
+.cs-section > .t-label { grid-column: 1 / 4; align-self: baseline; }
+.cs-text { grid-column: 4 / 13; align-self: baseline; display: flex; flex-direction: column; gap: var(--space-24); }
 .cs-text > .t-body:only-of-type,
 .cs-text > .t-body.is-single { max-width: 40em; }
 
@@ -54,33 +54,51 @@
 .cs-list .t-label { width: 24px; flex: none; color: var(--color-muted); }
 
 /* ── Media rows ─────────────────────────────────────────────────────── */
-.cs-row { padding-top: var(--space-64); row-gap: var(--space-40); align-items: start; }
+/* A row packs its figures from the left, one gutter apart. Each figure is
+   only as wide as its image, so when an image is narrower than its slot the
+   spare space collects at the right end of the row, never between images.
+   A slot is the pattern's column span of the row (100cqi = the row's
+   width); its width caps the image's width and the pattern's ratio caps
+   its height. Images are never cropped and never sit on a background. */
+.cs-row {
+  container-type: inline-size;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: var(--grid-gutter);
+  row-gap: var(--space-40);
+  padding-top: var(--space-64);
+}
 .cs-row + .cs-row { padding-top: var(--space-40); }
+.cs-row > * {
+  flex: none;
+  --col: calc((100cqi - (var(--grid-cols) - 1) * var(--grid-gutter)) / var(--grid-cols));
+  --slot: calc(var(--span) * var(--col) + (var(--span) - 1) * var(--grid-gutter));
+}
 
-/* Images are never cropped and never sit on a background. Each one shows
-   whole, as large as its slot allows: the slot's columns set the width and
-   the pattern's ratio caps the height, so an image narrower than the
-   pattern sits left-aligned with space on its right. (100cqi = the
-   figure's width.) */
-.m { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); container-type: inline-size; --m-ratio: 1.3333; }
-.m--full  { grid-column: 1 / 13; --m-ratio: 2.3333; }
-.m--wide  { grid-column: span 8;  --m-ratio: 1.5; }
-.m--half  { grid-column: span 6;  --m-ratio: 1.3333; }
-.m--third { grid-column: span 4;  --m-ratio: 0.8; }
+.m { margin: 0; display: flex; flex-direction: column; gap: var(--space-8); --span: 6; --m-ratio: 1.3333; }
+.m--full  { --span: 12; --m-ratio: 2.3333; }
+.m--wide  { --span: 8;  --m-ratio: 1.5; }
+.m--half  { --span: 6;  --m-ratio: 1.3333; }
+.m--third { --span: 4;  --m-ratio: 0.8; }
 .m--square { --m-ratio: 1; }
 
-.m-box { position: relative; width: 100%; }
+.m-box { position: relative; }
 .m-box > img,
 .m-box > video {
   display: block;
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: calc(100cqi / var(--m-ratio));
+  max-width: var(--slot);
+  max-height: calc(var(--slot) / var(--m-ratio));
 }
 
-/* Framed media: these keep a fixed frame and fill it (hero, film, branding
-   plates, logo, small 2×2). */
+/* Framed media: these keep a fixed frame the full width of their slot and
+   fill it (hero, film, branding plates, logo, small 2×2). */
+.cs-hero .m,
+.m--169,
+.m--brand,
+.m--grid4 { width: var(--slot); }
 .cs-hero .m-box,
 .m--169 .m-box,
 .m--brand .m-box,
@@ -110,7 +128,8 @@
   object-fit: contain;
 }
 
-/* Tether: the hero video is shown whole, on its own grey */
+/* Tether: the hero video is shown whole on #B1B1B1, the grey the video
+   itself shows on screen. No poster: a still image draws that grey darker. */
 .cs--tether .cs-hero .m-box { background: var(--color-tether-hero); }
 .cs--tether .cs-hero .m-box > .cs-hero-video { object-fit: contain; }
 
@@ -118,9 +137,11 @@
 
 .cs-hero { padding-top: 0; }
 
-/* Wide + text: the text sits in the last 4 columns, its last line level
-   with the bottom of the image (lifted by the caption's line + gap). */
-.cs-aside { grid-column: span 4; align-self: end; margin-bottom: calc(var(--t-caption-lh) + var(--space-8)); display: flex; flex-direction: column; gap: var(--space-8); }
+/* Wide + text: the text takes a 4-column slot right after the image, its
+   last line level with the bottom of the image (lifted by the caption's
+   line + gap); if it's taller than the image, its first line is level
+   with the image's top instead. */
+.cs-aside { --span: 4; width: var(--slot); align-self: flex-end; margin-bottom: calc(var(--t-caption-lh) + var(--space-8)); display: flex; flex-direction: column; gap: var(--space-8); }
 
 /* ── Next project ───────────────────────────────────────────────────── */
 .cs-next {
@@ -150,6 +171,8 @@
   .cs-cols-2, .cs-cols-3 { grid-template-columns: minmax(0, 1fr); }
   .cs-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cs-row { padding-top: var(--space-40); row-gap: var(--space-24); }
+  .cs-row > * { --slot: 100cqi; }
+  .cs-aside { margin-bottom: 0; }
   .cs-row + .cs-row { padding-top: var(--space-24); }
   .m--full { --m-ratio: 1.7778; }
   .cs-hero .m-box { aspect-ratio: 4 / 3; }

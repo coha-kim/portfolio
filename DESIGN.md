@@ -70,9 +70,9 @@ Only four slot sizes. Every image row uses one of five patterns (markup and clas
 | Wide + text | `.m--wide` + `.cs-aside` (8 + 4) | 3:2, text bottom-aligned |
 | Third × 3 | `.m--third` ×3 (4 + 4 + 4) | 4:5, or 1:1 with `.m--square` for app screens |
 
-- **Never crop, never add a background.** Each image or video shows whole, at its own ratio, as large as its slot allows: the columns set the width, the pattern's ratio caps the height. If it's narrower than that, it sits left-aligned and the space is left on its right. No grey plates behind diagrams or screenshots (`.m--plate` no longer does anything).
+- **Never crop, never add a background.** Each image or video shows whole, at its own ratio, as large as its slot allows: the columns set the width, the pattern's ratio caps the height. Rows pack from the left, one gutter apart: a figure is only as wide as its image, so spare space collects at the right end of the row, never between images. No grey plates behind diagrams or screenshots (`.m--plate` no longer does anything).
 - Exceptions that keep a fixed frame: the hero (21:9), the 16:9 film, and the branding page's brand plates, logo and small 2×2.
-- Tether's hero video is shown whole in the 21:9 frame, on `--color-tether-hero` (the video's own grey).
+- Tether's hero video is shown whole in the 21:9 frame, on `--color-tether-hero` (#B1B1B1, the grey the video shows on screen). It has no poster, since a still draws that grey darker.
 - Text beside an image (Wide + text) lines up with the image itself, never the caption: its last line sits level with the image's bottom edge, or, if the text is taller than the image, its first line sits level with the image's top.
 - Every figure has a short caption, just the name ("Menu", "Rock"). No "Fig. n —" numbering.
 - Rows: 64px after section text, 40px between consecutive rows.
@@ -120,7 +120,7 @@ Starting point: the prototype `script.js` (Matter.js 0.19.0). The content area i
 ### 6.3 Case study (`pages/new-sod.html`, then `new-akea-haus.html`)
 Order: hero (21:9) → title (display) → [lede cols 1–6 | details cols 8–12] → sections → Next project.
 - Details: a 2×2 grid of label-style keys over Geist 15 values (Role, Areas, Year, Type). No leaders.
-- Sections: `01 — PROBLEM` label (cols 1–3) + content (cols 4–12). No lines anywhere.
+- Sections: `01 — PROBLEM` label (cols 1–3) + content (cols 4–12), the label on the same baseline as the first line of the content. No lines anywhere.
 - Research question: label + statement, both in `--color-accent`.
 - Design approach: 3 columns (stacked on phone) of number label, Geist 500 heading and body.
 - End: right-aligned `NEXT PROJECT` label over a `TETHER →` link (next-project style).
