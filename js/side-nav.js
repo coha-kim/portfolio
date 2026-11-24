@@ -30,18 +30,18 @@
       award: { src: 'assets/images/best-gold.png', alt: 'Best Design Awards, Gold' },
       href: 'pages/tether.html' },
     { id: 'akea',   title: 'Akea Haus',     year: '2025', areas: 'Brand strategy, UX research, app design',
-      cover: 'assets/images/lp-thumb-akea.webp', href: 'pages/new-akea-haus.html' }
+      cover: 'assets/images/lp-thumb-akea.webp', href: 'pages/new-akea-haus.html' },
+    { id: 'sequence', title: 'Sequence',     year: '2026', areas: 'UX design, UI design',
+      cover: 'assets/sequence/sequence-identity.webp',
+      award: { src: 'assets/images/best-silver.png', alt: 'Best Design Awards, Silver' },
+      href: 'pages/sequence.html' }
   ];
 
   // Smaller work, folded under "Other" in the work list (opens on click,
   // and is already open when you're on one of these pages).
   var OTHER = [
     { id: 'bakatchae', title: 'Bakkatchae', year: '2026', areas: 'Branding, café identity',
-      cover: 'assets/bakkatchae/bakkatchae-logo.webp', href: 'pages/bakkatchae.html' },
-    { id: 'sequence',  title: 'Sequence',  year: '2026', areas: 'UX design, UI design',
-      cover: 'assets/sequence/sequence-identity.webp',
-      award: { src: 'assets/images/best-silver.png', alt: 'Best Design Awards, Silver' },
-      href: 'pages/sequence.html' }
+      cover: 'assets/bakkatchae/bakkatchae-logo.webp', href: 'pages/bakkatchae.html' }
   ];
 
   var nav = document.getElementById('side-nav');

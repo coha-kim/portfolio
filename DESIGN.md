@@ -26,9 +26,9 @@ Visual reference (private canvas, owner-only): https://claude.ai/artifact/Whuodq
 | Lede | `--font-body` | 400 | 22/32 | Sentence |
 | Statement (problem, research Q) | `--font-body` | 400 | 30/38 (phone 23/31) | Sentence |
 | Heading | `--font-body` | 500 | 20/28 | Sentence |
-| Body | `--font-body` | 400 | 18/28 (phone 17/26) | Sentence |
+| Body | `--font-body` | 400 | 17/26 | Sentence |
 | Meta value | `--font-body` | 400 | 15/22 | Sentence |
-| Caption | `--font-body` | 400 | 14/20 (Play 13) | Sentence |
+| Caption | `--font-body` | 400 | 13/18 | Sentence |
 
 Rules:
 1. **Ultralight minimum is 16px** (`--ultralight-min`). Anything smaller is Supply Sans 400 or Geist (e.g. ©, empty-image labels).
@@ -73,7 +73,7 @@ Only four slot sizes. Every image row uses one of five patterns (markup and clas
 - **Never crop, never add a background.** Each image or video shows whole, at its own ratio, as large as its slot allows: the columns set the width, the pattern's ratio caps the height. If it's narrower than that, it sits left-aligned and the space is left on its right. No grey plates behind diagrams or screenshots (`.m--plate` no longer does anything).
 - Exceptions that keep a fixed frame: the hero (21:9), the 16:9 film, and the branding page's brand plates, logo and small 2×2.
 - Tether's hero video is shown whole in the 21:9 frame, on `--color-tether-hero` (the video's own grey).
-- Wide + text: the text's last line sits level with the bottom of the image, not the caption.
+- Text beside an image (Wide + text) lines up with the image itself, never the caption: its last line sits level with the image's bottom edge, or, if the text is taller than the image, its first line sits level with the image's top.
 - Every figure has a short caption, just the name ("Menu", "Rock"). No "Fig. n —" numbering.
 - Rows: 64px after section text, 40px between consecutive rows.
 - Don't use any other column span or inline size. If an image doesn't suit a pattern, use the nearest one; it will show whole inside it.
@@ -90,13 +90,13 @@ Top block:
 - Leader (88px) + `CONTACT`, then indented links: `EMAIL ↗` (mailto:eigengraush@gmail.com), `INSTAGRAM ↗` (instagram.com/gim.coha), `LINKEDIN ↗` (linkedin.com/in/seohakim01). Label style.
 
 Bottom block (pinned to the bottom):
-- Preview row: project cover (16:10, 3fr) + areas text (Geist 14, right-aligned, 2fr).
+- Preview row: project cover (16:10, 3fr) + areas text (Geist 13, right-aligned, 2fr).
 - `WORK` label with the count at the right, hairline under it.
-- Project rows: title (nav style) + year (label size, right-aligned). Order: Shape of Days, Tether, Akea Haus.
+- Project rows: title (nav style) + year (label size, right-aligned). Order: Shape of Days, Tether, Akea Haus, Sequence; then "Other" (Bakkatchae).
 - Behaviour: hovering or focusing a row makes it Regular and swaps the preview to that project. On leave it goes back to the current project. Only one Regular row at a time.
 - On non-project pages (home, Play, About): no row is Regular, and the preview is an empty `--color-empty` slot saying "HOVER A PROJECT".
 - `© 2026 · Tāmaki Makaurau Auckland`: Geist 12, `--color-secondary`.
-- Height budget: it must fit about 650px of viewport. If projects push past that, shrink the cover with `clamp()` before anything else.
+- Height budget: it must fit about 650px of viewport. The cover shrinks first (`clamp()`); below 720px tall the preview row is dropped.
 
 Project data:
 | id | title | year | areas | cover | page |
@@ -104,6 +104,7 @@ Project data:
 | sod | Shape of Days | 2026 (old page said 2025, confirm) | UX research, creative coding | assets/images/sod-cs-image1.webp | pages/new-sod.html |
 | tether | Tether | 2026 | Installation design, physical computing | assets/tether/tether-hero.webp (+ tether-hero.mp4) | pages/tether.html |
 | akea | Akea Haus | 2026 | Brand strategy, UX research, app design | assets/images/lp-thumb-akea.webp | pages/new-akea-haus.html |
+| sequence | Sequence | 2026 | UX design, UI design | assets/sequence/sequence-identity.webp | pages/sequence.html |
 
 ### 6.2 Landing (`index.html`): slingshot
 Starting point: the prototype `script.js` (Matter.js 0.19.0). The content area is the arena (`--color-plate` background), with the side nav on the left.
@@ -131,7 +132,7 @@ Order: hero (21:9) → title (display) → [lede cols 1–6 | details cols 8–1
 Not a case study, so no hero. Header: title, lede and the details grid (Areas, Type, Year, Instagram link) on the left, cols 1–8; the logo (3:4) in cols 10–12, top-aligned (on phone it comes first, half width). Then image rows only: no numbered sections. Rows: Half + Half (menu, floor guide, on brand plates) → Third × 3 (sticker, entrance, poster) → Small 2×2 (interior). Ends with Next project → Shape of Days. Listed under "Other" in the side nav.
 
 ### 6.3c Sequence (`pages/sequence.html`)
-Short case study, listed under "Other" with the Silver pin. Hero is the header image (Silver badge baked in), then the header (Areas, Year, Type, Award ↗ to its Best Awards entry), then the walkthrough film as a Full row at 16:9 (`.m--169`, never cropped; has sound, so it carries controls). Sections: 01 Problem, 02 Idea, 03 Two screens, 04 Behind the scenes. Ends with Next project → Shape of Days.
+Short case study, last in the Work list, with the Silver pin. Hero is the header image (Silver badge baked in), then the header (Areas, Year, Type, Award ↗ to its Best Awards entry), then the walkthrough film as a Full row at 16:9 (`.m--169`, never cropped; has sound, so it carries controls). Sections: 01 Problem, 02 Idea, 03 Two screens, 04 Behind the scenes. Ends with Next project → Shape of Days.
 
 ### 6.4 Play (`pages/play.html`)
 - Top: "Welcome to playground. More to come." in statement style, cols 7–12, then a section gap. No categories or filters.
@@ -149,9 +150,9 @@ Short case study, listed under "Other" with the Silver pin. Hero is the header i
 - Sound: Fluid sim, Point cloud and ASCII hand tracking have sound (`data-sound`). They play muted on hover; the click that focuses them turns sound on, the click that clears it mutes. The other clips have no audio track.
 
 ### 6.5 About (`pages/about.html`)
-- First viewport: bio (cols 1–5, bottom-aligned, Geist 18) | portrait (cols 8–12, 2:3, upright: the current `about-portrait.webp` is stored rotated 90°).
+- First viewport: bio (cols 1–5, bottom-aligned, Geist 17) | portrait (cols 8–12, 2:3, upright: the current `about-portrait.webp` is stored rotated 90°).
 - Above the bio, 40px gap: a practice label in Supply Sans 22 Regular, uppercase, in brackets: [CREATIVE CODING] → [PHYSICAL-DIGITAL EXPERIENCE] → [PLAYFUL TECH] → [USER RESEARCH] (`js/about-roll.js`). ASCII scramble, after daas.graphics: each change flickers through random ASCII glyphs (one swap per 40ms frame), then the word resolves letter by letter, mostly left to right; it holds 2.4s. The bracket window eases to the new width and clips the glyphs. Pauses on hover and in a hidden tab; reduced motion stays on the first word. Screen readers get the list as one visually-hidden sentence.
-- Then, 168px down, "Outside of design": five hobby photos in one row (cols 1–7, 4px apart; four at 3:4, the last a little wider, `about-hobby-1…5.webp`), then the note (cols 1–5, Geist 18), 24px under it. This replaces the workspace photo and "This is where everything is made."
+- Then, 168px down, "Outside of design": five hobby photos in one row (cols 1–7, 4px apart; four at 3:4, the last a little wider, `about-hobby-1…5.webp`), then the note (cols 1–5, Geist 17), 24px under it. This replaces the workspace photo and "This is where everything is made."
 - **Removed for now:** practice, location, degree, recognition, resume.
 
 ### 6.6 Phone

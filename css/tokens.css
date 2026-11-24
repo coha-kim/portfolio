@@ -30,9 +30,9 @@
   --t-lede-size:      22px; --t-lede-lh:      32px;  /* case-study summary          */
   --t-statement-size: 30px; --t-statement-lh: 38px;  /* problem, research question  */
   --t-heading-size:   20px; --t-heading-lh:   28px;  /* principle titles, 500       */
-  --t-body-size:      18px; --t-body-lh:      28px;  /* all reading text, 400       */
+  --t-body-size:      17px; --t-body-lh:      26px;  /* all reading text, 400       */
   --t-meta-size:      15px; --t-meta-lh:      22px;  /* case-study detail values    */
-  --t-caption-size:   14px; --t-caption-lh:   20px;  /* figure captions             */
+  --t-caption-size:   13px; --t-caption-lh:   18px;  /* figure captions             */
   --t-play-caption-size: 13px;                       /* Play gallery captions       */
   --t-small-size:     12px; --t-small-lh:     16px;  /* ©, empty-slot labels (Geist / Supply 400) */
 

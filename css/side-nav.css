@@ -113,6 +113,9 @@
 /* ── Bottom block ──────────────────────────────────────────────────────── */
 
 .side-nav__preview[hidden] { display: none; }
+@media (min-width: 761px) and (max-height: 720px) {
+  .side-nav .side-nav__preview { display: none; }
+}
 
 .side-nav__preview {
   display: grid;
@@ -122,10 +125,12 @@
   margin-bottom: var(--space-24);
 }
 
-/* Height budget ≈ 650px viewport: the cover shrinks before anything else.
-   Its height is capped by what's left after the rest of the nav (~580px). */
+/* Height budget: the cover shrinks before anything else. Its height is
+   capped by what's left after the rest of the nav (~660px with four
+   projects and "Other" open). Below 720px tall there's no room for it, so
+   the preview is dropped altogether (see the media query below). */
 .side-nav__cover {
-  --cover-max-h: clamp(56px, 100vh - 580px, 200px);
+  --cover-max-h: clamp(56px, 100vh - 660px, 200px);
   position: relative;
   width: min(100%, calc(var(--cover-max-h) * 1.6));
   aspect-ratio: var(--ratio-cover);
